@@ -1,7 +1,7 @@
 const database = require('../database');
 
-const getCategories = async (res) => {
-    const response = await database.query('SELECT * FROM categories');
+const getCategories = async (req, res) => {
+    const response = await database.query('SELECT id, name FROM categories');
     
     if(response.rows.length > 0){
         res.status(200).json(response.rows);
@@ -12,7 +12,7 @@ const getCategories = async (res) => {
 
 const getCategorieById = async (req, res) => {
     if(!isNaN(req.params.id)){
-        const response = await database.query('SELECT * FROM categories WHERE id = $1',[req.params.id]);
+        const response = await database.query('SELECT id, name FROM categories WHERE id = $1',[req.params.id]);
 
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);

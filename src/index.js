@@ -7,6 +7,7 @@ app.use(express.urlencoded({extended: false}));
 
 //ROUTES
 app.use(require('./routes/recipes-routes'));
+app.use(require('./routes/categories-routes'));
 
 //PORT
 app.listen(3000);
