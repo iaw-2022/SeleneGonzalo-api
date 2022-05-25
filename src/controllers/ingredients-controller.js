@@ -24,7 +24,21 @@ const getIngredientById = async (req, res) => {
     }
 };
 
+const createIngredient = async(req, res) => {
+    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    const {name} = req.body
+    console.log(req.body)
+    await database.query('INSERT INTO ingredients (name, created_at, updated_at) VALUES ($1,$2,$3) returning id', [name, actualDate, actualDate], function(err, result, fields) {
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.status(200).json({message: 'Ingrediente creado satisfactoriamente'});
+        }
+    });
+}
+
 module.exports = {
     getIngredients,
-    getIngredientById
+    getIngredientById,
+    createIngredient
 }
