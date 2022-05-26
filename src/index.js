@@ -1,4 +1,5 @@
 const express = require ('express');
+const res = require('express/lib/response');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger');
@@ -8,6 +9,12 @@ const app = express();
 //MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+app.get('/', (req,res) => {
+    res.json({
+        message : 'api',
+    })
+});
 
 //ROUTES
 app.use(require('./routes/recipes-routes'));

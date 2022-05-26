@@ -8,7 +8,7 @@ const ingredientController = require ('../controllers/ingredients-controller');
  *   get:
  *     description: Usar para solicitar un ingrediente.
  *     tags: 
- *       - Ingredients
+ *       - Ingredientes
  *     parameters:
  *       - in: path
  *         name: id
@@ -32,7 +32,7 @@ router.get('/ingredients/:id', ingredientController.getIngredientById);
  *   get:
  *     description: Usar para obtener todas las categorías.
  *     tags: 
- *       - Ingredients
+ *       - Ingredientes
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

@@ -8,7 +8,7 @@ const userController = require ('../controllers/users-controller');
  *   get:
  *     description: Usar para solicitar un usuario.
  *     tags: 
- *       - Users
+ *       - Usuarios
  *     parameters:
  *       - in: path
  *         name: id
@@ -32,7 +32,7 @@ router.get('/users/:id', userController.getUserById);
  *   get:
  *     description: Usar para obtener todos los usuarios.
  *     tags: 
- *       - Users
+ *       - Usuarios
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

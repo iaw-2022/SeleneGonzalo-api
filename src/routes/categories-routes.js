@@ -8,7 +8,7 @@ const categoryController = require ('../controllers/categories-controller');
  *   get:
  *     description: Usar para solicitar una categoría.
  *     tags: 
- *       - Categories
+ *       - Categorías
  *     parameters:
  *       - in: path
  *         name: id
@@ -32,7 +32,7 @@ router.get('/categories/:id', categoryController.getCategorieById);
  *   get:
  *     description: Usar para obtener todas las categorías.
  *     tags: 
- *       - Categories
+ *       - Categorías
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

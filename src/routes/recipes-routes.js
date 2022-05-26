@@ -8,7 +8,7 @@ const recipeController = require ('../controllers/recipes-controller');
  *   get:
  *     description: Usar para solicitar una receta.
  *     tags: 
- *       - Recipes
+ *       - Recetas
  *     parameters:
  *       - in: path
  *         name: id
@@ -32,7 +32,7 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *   get:
  *     description: Usar para obtener todas las recetas.
  *     tags: 
- *       - Recipes
+ *       - Recetas
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
@@ -49,7 +49,7 @@ router.get('/recipes', recipeController.getRecipes);
  *   post:
  *     description: Usar para cargar una receta.
  *     tags: 
- *       - Recipes
+ *       - Recetas
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
@@ -66,7 +66,7 @@ router.post('/recipes', recipeController.createRecipe);
  *   delete:
  *     description: Usar para eliminar una receta.
  *     tags: 
- *       - Recipes
+ *       - Recetas
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
