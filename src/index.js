@@ -22,6 +22,8 @@ app.use(require('./routes/categories-routes'));
 app.use(require('./routes/ingredients-routes'));
 app.use(require('./routes/users-routes'));
 app.use(require('./routes/qualifies-routes'));
+app.use(require('./routes/has-routes'));
+app.use(require('./routes/belongs-routes'));
 
 //DOCUMENTATION
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

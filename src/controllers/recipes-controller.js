@@ -31,14 +31,9 @@ const createRecipe = async(req, res) => {
         if (err) {
             res.status(400).json({error: 'Algo salió mal'});
         }else{
-            assignUpload(result.rows[0], id_user, actualDate).then(
-                assignBelongs(result.rows[0], categories, actualDate).then( () => {
-                    assignHas(result.rows[0],ingredients, actualDate)
-                    .then (res.status(200).json({id_recipe: result.rows[0].id}))
-                    .catch (res.status(400).json({error: 'Algo salió mal'}));
-                }
-                )
-            )
+            assignUpload(result.rows[0], id_user, actualDate)
+            .then (res.status(200).json({id_recipe: result.rows[0].id}))
+            .catch (res.status(400).json({error: 'Algo salió mal'}));
         }
     });
 }
@@ -48,26 +43,6 @@ async function assignUpload(id_recipe, id_user, actualDate) {
         if (err) {
             throw Error("error")
         }
-    });
-}
-
-async function assignBelongs(id_recipe, categories, actualDate) {
-    categories.forEach(async element => {
-        await database.query('INSERT INTO belongs VALUES ($1,$2,$3,$4)', [id_recipe, element.id, actualDate, actualDate], function(err, result, fields){
-            if (err) {
-                throw Error("error")
-            }
-        });
-    });
-}
-
-async function assignHas(id_recipe, ingredients,actualDate){
-    ingredients.forEach(async element => {
-        await database.query('INSERT INTO has VALUES ($1,$2,$3,$4,$5)', [id_recipe, element.id, element.lot, actualDate, actualDate], function(err, result, fields){
-            if (err) {
-                throw Error("error")
-            }
-        });
     });
 }
 

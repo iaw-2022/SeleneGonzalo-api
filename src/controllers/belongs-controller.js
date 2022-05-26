@@ -1,3 +1,4 @@
+const database = require('../database');
 const updateBelongs = async (req, res) => {
     if(!isNaN(req.body.id)){
         const {} = req.body
@@ -11,4 +12,25 @@ const updateBelongs = async (req, res) => {
     }else{
         res.status(400).json({error: 'Parámetro inválido'});
     }
+}
+
+const assignBelongs = async (req, res) =>{
+    if(!isNaN(req.body.id_recipe)){
+        let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+        const {id_recipe, id_category} = req.body
+        console.log(id_recipe, id_category)
+        await database.query('INSERT INTO belongs VALUES ($1,$2,$3,$4)', [id_category, id_recipe, actualDate, actualDate], function(err, result, fields){
+            if (err) {
+                throw Error(err)
+            }else
+                res.status(200).json({message: 'Asignacion exitosa'});
+        });
+    }else{
+        res.status(400).json({error: 'Parámetro inválido'});
+    }
+}
+
+module.exports = {
+    updateBelongs,
+    assignBelongs
 }

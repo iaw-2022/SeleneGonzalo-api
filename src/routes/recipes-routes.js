@@ -77,4 +77,21 @@ router.post('/recipes', recipeController.createRecipe);
  */
 router.delete('/recipes', recipeController.deleteRecipe);
 
+/**
+ * @swagger
+ * /recipes:
+ *   put:
+ *     description: Usar para modificar una receta.
+ *     tags: 
+ *       - Recetas
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
+router.put('/recipes', recipeController.updateRecipe);
+
 module.exports = router;
