@@ -13,7 +13,6 @@ const getIngredients = async (req, res) => {
 const getIngredientById = async (req, res) => {
     if(!isNaN(req.params.id)){
         const response = await database.query('SELECT id, name FROM ingredients WHERE id = $1',[req.params.id]);
-
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
         }else{
@@ -25,7 +24,7 @@ const getIngredientById = async (req, res) => {
 };
 
 const createIngredient = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {name} = req.body
     console.log(req.body)
     await database.query('INSERT INTO ingredients (name, created_at, updated_at) VALUES ($1,$2,$3) returning id', [name, actualDate, actualDate], function(err, result, fields) {

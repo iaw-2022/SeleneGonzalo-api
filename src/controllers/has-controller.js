@@ -18,7 +18,7 @@ const updateHas = async (req, res) => {
 const assignHas = async (req, res) =>{
     const {lot,id_ingredient,id_recipe} = req.body
     if(!isNaN(id_ingredient) && !isNaN(id_recipe)){
-        let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+        let actualDate = new Date(Date.now()).toLocaleString('en-US');
         await database.query('INSERT INTO has VALUES ($1,$2,$3,$4,$5)', [lot, id_ingredient, id_recipe, actualDate, actualDate], function(err, result, fields){
             if (err) {
                 throw Error(err)

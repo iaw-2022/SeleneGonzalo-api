@@ -24,7 +24,7 @@ const getRecipeById = async (req, res) => {
 };
 
 const createRecipe = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {id_user, name, image, description,ingredients,categories} = req.body
     console.log(req.body)
     await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], function(err, result, fields) {
@@ -48,7 +48,6 @@ async function assignUpload(id_recipe, id_user, actualDate) {
 
 const deleteRecipe = async(req, res) => {
     if(!isNaN(req.body.id)){
-        let actualDate = new Date(Date.now()).toLocaleString('es-AR');
         const {id_user} = req.body
         await database.query('DELETE FROM recipes WHERE id = $1',[req.params.id],function(err, result, fields) {
             if (err) {

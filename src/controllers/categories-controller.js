@@ -25,7 +25,7 @@ const getCategorieById = async (req, res) => {
 };
 
 const createCategory = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {name} = req.body
     console.log(req.body)
     await database.query('INSERT INTO categories (name, created_at, updated_at) VALUES ($1,$2,$3) returning id', [name, actualDate, actualDate], function(err, result, fields) {

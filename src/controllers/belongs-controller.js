@@ -16,7 +16,7 @@ const updateBelongs = async (req, res) => {
 
 const assignBelongs = async (req, res) =>{
     if(!isNaN(req.body.id_recipe)){
-        let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+        let actualDate = new Date(Date.now()).toLocaleString('en-US');
         const {id_recipe, id_category} = req.body
         console.log(id_recipe, id_category)
         await database.query('INSERT INTO belongs VALUES ($1,$2,$3,$4)', [id_category, id_recipe, actualDate, actualDate], function(err, result, fields){

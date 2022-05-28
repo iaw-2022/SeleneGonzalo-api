@@ -15,7 +15,7 @@ const getQualificationById = async (req, res) => {
 };
 
 const createQualification = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {id_user, id_recipe, commentary, qualification} = req.body
     console.log(req.body)
     await database.query('INSERT INTO qualifies (id_user, id_recipe, commentary, qualification, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6) returning id', [id_user, id_recipe,commentary, qualification, actualDate, actualDate], function(err, result, fields) {
