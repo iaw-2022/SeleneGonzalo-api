@@ -36,8 +36,20 @@ const createIngredient = async(req, res) => {
     });
 }
 
+const deleteIngredient = async(req, res) => {
+    const {id_ingredient} = req.body
+    await database.query('DELETE FROM ingredients WHERE id = $1',[id_ingredient],function(err, result, fields) {
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.status(200).json({message: 'Categoría eliminada satisfactoriamente'});
+        }
+    });
+}
+
 module.exports = {
     getIngredients,
     getIngredientById,
-    createIngredient
+    createIngredient,
+    deleteIngredient
 }

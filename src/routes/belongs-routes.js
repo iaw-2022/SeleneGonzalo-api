@@ -1,6 +1,12 @@
 const { Router } = require ('express');
 const router = Router();
 const belongsController = require ('../controllers/belongs-controller');
+const auth = require('../auth');
+
+//AUTH
+router.get('/authorized',auth, function (req, res) {
+    res.send('Secured Resource');
+});
 
 /**
  * @swagger
@@ -17,7 +23,7 @@ const belongsController = require ('../controllers/belongs-controller');
  *       '404':
  *         description: No se encontró.
  */
-router.post('/categories-recipe', belongsController.assignBelongs);
+router.post('/categories-recipe',auth, belongsController.assignBelongs);
 
 /**
  * @swagger
@@ -34,6 +40,6 @@ router.post('/categories-recipe', belongsController.assignBelongs);
  *       '404':
  *         description: No se encontró.
  */
-router.put('/categories-recipe', belongsController.updateBelongs);
+router.put('/categories-recipe',auth, belongsController.updateBelongs);
 
 module.exports = router;

@@ -1,6 +1,12 @@
 const { Router } = require ('express');
 const router = Router();
 const qualifiesController = require ('../controllers/qualifies-controller');
+const auth = require('../auth');
+
+//AUTH
+router.get('/authorized',auth, function (req, res) {
+    res.send('Secured Resource');
+});
 
 /**
  * @swagger
@@ -41,7 +47,7 @@ router.get('/qualifies/:id', qualifiesController.getQualificationById);
  *       '404':
  *         description: No se encontró.
  */
-router.post('/qualifies', qualifiesController.createQualification);
+router.post('/qualifies',auth, qualifiesController.createQualification);
 
 /**
  * @swagger
@@ -58,6 +64,6 @@ router.post('/qualifies', qualifiesController.createQualification);
  *       '404':
  *         description: No se encontró.
  */
-router.delete('/qualifies', qualifiesController.deleteQualification);
+router.delete('/qualifies',auth, qualifiesController.deleteQualification);
 
 module.exports = router;

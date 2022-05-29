@@ -1,6 +1,12 @@
 const { Router } = require ('express');
 const router = Router();
 const recipeController = require ('../controllers/recipes-controller');
+const auth = require('../auth');
+
+//AUTH
+router.get('/authorized',auth, function (req, res) {
+    res.send('Secured Resource');
+});
 
 /**
  * @swagger
@@ -58,7 +64,7 @@ router.get('/recipes', recipeController.getRecipes);
  *       '404':
  *         description: No se encontró.
  */
-router.post('/recipes', recipeController.createRecipe);
+router.post('/recipes',auth, recipeController.createRecipe);
 
 /**
  * @swagger
@@ -75,7 +81,7 @@ router.post('/recipes', recipeController.createRecipe);
  *       '404':
  *         description: No se encontró.
  */
-router.delete('/recipes', recipeController.deleteRecipe);
+router.delete('/recipes',auth, recipeController.deleteRecipe);
 
 /**
  * @swagger
@@ -92,6 +98,6 @@ router.delete('/recipes', recipeController.deleteRecipe);
  *       '404':
  *         description: No se encontró.
  */
-router.put('/recipes', recipeController.updateRecipe);
+router.put('/recipes',auth, recipeController.updateRecipe);
 
 module.exports = router;

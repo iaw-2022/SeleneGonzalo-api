@@ -25,6 +25,13 @@ app.use(require('./routes/qualifies-routes'));
 app.use(require('./routes/has-routes'));
 app.use(require('./routes/belongs-routes'));
 
+//AUTH
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).send({error: "Invalid token"});
+    }
+});
+
 //DOCUMENTATION
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

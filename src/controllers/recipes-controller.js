@@ -47,18 +47,14 @@ async function assignUpload(id_recipe, id_user, actualDate) {
 }
 
 const deleteRecipe = async(req, res) => {
-    if(!isNaN(req.body.id)){
-        const {id_user} = req.body
-        await database.query('DELETE FROM recipes WHERE id = $1',[req.params.id],function(err, result, fields) {
-            if (err) {
-                res.status(400).json({error: 'Algo salió mal'});
-            }else{
-                res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
-            }
-        });
-    }else{
-        res.status(400).json({error: 'Parámetro inválido'});
-    }
+    const {id_recipe} = req.body
+    await database.query('DELETE FROM recipes WHERE id = $1',[id_recipe],function(err, result, fields) {
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
+        }
+    });
 }
 
 const updateRecipe = async (req, res) => {

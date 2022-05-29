@@ -37,8 +37,20 @@ const createCategory = async(req, res) => {
     });
 }
 
+const deleteCategory = async(req, res) => {
+    const {id_category} = req.body
+    await database.query('DELETE FROM categories WHERE id = $1',[id_category],function(err, result, fields) {
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.status(200).json({message: 'Categoría eliminada satisfactoriamente'});
+        }
+    });
+}
+
 module.exports = {
     getCategories,
     getCategorieById,
-    createCategory
+    createCategory,
+    deleteCategory
 }
