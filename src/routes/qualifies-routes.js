@@ -37,8 +37,30 @@ router.get('/qualifies/:id', qualifiesController.getQualificationById);
  * /qualifies:
  *   post:
  *     description: Usar para cargar una calificación.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Calificaciones
+ *     parameters:
+ *       - in: body
+ *         name: qualification
+ *         description: Calificación a cargar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id_user
+ *             - id_recipe
+ *             - commentary
+ *             - qualification
+ *           properties:
+ *             id_user:
+ *               type: integer
+ *             id_recipe:
+ *               type: integer
+ *             commentary:
+ *               type: string
+ *             qualification:   
+ *               type: string
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

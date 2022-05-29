@@ -24,12 +24,11 @@ const getRecipeById = async (req, res) => {
 };
 
 const createRecipe = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('en-US');
-    const {id_user, name, image, description,ingredients,categories} = req.body
-    console.log(req.body)
+    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    const {id_user, name, image, description} = req.body
     await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], function(err, result, fields) {
         if (err) {
-            res.status(400).json({error: 'Algo salió mal'});
+            res.status(400).json({error: err});
         }else{
             assignUpload(result.rows[0], id_user, actualDate)
             .then (res.status(200).json({id_recipe: result.rows[0].id}))

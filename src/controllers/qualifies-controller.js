@@ -15,12 +15,11 @@ const getQualificationById = async (req, res) => {
 };
 
 const createQualification = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('en-US');
+    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
     const {id_user, id_recipe, commentary, qualification} = req.body
-    console.log(req.body)
-    await database.query('INSERT INTO qualifies (id_user, id_recipe, commentary, qualification, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6) returning id', [id_user, id_recipe,commentary, qualification, actualDate, actualDate], function(err, result, fields) {
+    await database.query('INSERT INTO qualifies (id_user, id_recipe, commentary, qualification, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6)', [id_user, id_recipe,commentary, qualification, actualDate, actualDate], function(err, result, fields) {
         if (err) {
-            res.status(400).json({error: 'Algo salió mal'});
+            res.status(400).json({error: err});
         }else{
             res.status(200).json({message: 'Calificación enviada satisfactoriamente'});
         }
@@ -28,14 +27,12 @@ const createQualification = async(req, res) => {
 }
 
 const deleteQualification = async (req,res) => {
-    if(!isNaN(req.params.id)){
-        const {id,id_recipe, id_user} = req.body
-        await database.query('DELETE FROM qualifies WHERE id = $1 and id_recipe = $2 and id_user = $3'), [id, id_recipe, id_user], function(err,result, fields){
-            if (err) {
-                res.status(400).json({error: 'Algo salió mal'});
-            }else{
-                res.json({message: 'La calificación se removió satisfactoriamente'})
-            }
+    const {id,id_recipe, id_user} = req.body
+    await database.query('DELETE FROM qualifies WHERE id = $1 and id_recipe = $2 and id_user = $3'), [id, id_recipe, id_user], function(err,result, fields){
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.json({message: 'La calificación se removió satisfactoriamente'})
         }
     }
 }
