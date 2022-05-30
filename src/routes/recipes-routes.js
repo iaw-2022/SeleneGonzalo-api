@@ -54,8 +54,30 @@ router.get('/recipes', recipeController.getRecipes);
  * /recipes:
  *   post:
  *     description: Usar para cargar una receta.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Recetas
+ *     parameters:
+ *       - in: body
+ *         name: recipe
+ *         description: Receta a cargar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id_user
+ *             - name
+ *             - image
+ *             - description
+ *           properties:
+ *             id_user:
+ *               type: integer
+ *             name:
+ *               type: string
+ *             image:
+ *               type: string
+ *             description:   
+ *               type: string
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
@@ -71,8 +93,30 @@ router.post('/recipes',auth, recipeController.createRecipe);
  * /recipes:
  *   delete:
  *     description: Usar para eliminar una receta.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Recetas
+ *     parameters:
+ *       - in: body
+ *         name: recipe
+ *         description: Receta a eliminar.
+ *         schema:
+ *           type: integer
+ *           required: 
+ *             - id_recipe
+ *             - name
+ *             - image
+ *             - description
+ *           properties:
+ *             id_recipe:
+ *               type: integer
+ *             name:
+ *               type: string
+ *             image:
+ *               type: string
+ *             description:   
+ *               type: string
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
@@ -88,8 +132,30 @@ router.delete('/recipes',auth, recipeController.deleteRecipe);
  * /recipes:
  *   put:
  *     description: Usar para modificar una receta.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Recetas
+ *     parameters:
+ *       - in: body
+ *         name: recipe
+ *         description: Datos a modificar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id_recipe
+ *             - name
+ *             - image
+ *             - description
+ *           properties:
+ *             id_recipe:
+ *               type: integer
+ *             name:
+ *               type: string
+ *             image:
+ *               type: string
+ *             description:   
+ *               type: string
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

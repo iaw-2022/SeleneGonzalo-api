@@ -54,8 +54,21 @@ router.get('/ingredients', ingredientController.getIngredients);
  * /ingredients:
  *   delete:
  *     description: Usar para eliminar un ingrediente.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Ingredientes
+ *     parameters:
+ *       - in: body
+ *         name: ingredient
+ *         description: Ingrediente a eliminar.
+ *         schema:
+ *           type: integer
+ *           required: 
+ *             - id_ingredient
+ *           properties:
+ *             id_ingredient:
+ *               type: integer
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

@@ -76,8 +76,27 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  * /qualifies:
  *   delete:
  *     description: Usar para eliminar una calificación.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Calificaciones
+ *     parameters:
+ *       - in: body
+ *         name: qualification
+ *         description: Calificación a eliminar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id
+ *             - id_recipe
+ *             - id_user
+ *           properties:
+ *             id:
+ *               type: integer
+ *             id_recipe:
+ *               type: integer
+ *             id_user:
+ *               type: integer
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

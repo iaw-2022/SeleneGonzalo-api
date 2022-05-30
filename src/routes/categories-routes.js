@@ -54,8 +54,21 @@ router.get('/categories', categoryController.getCategories);
  * /categories:
  *   delete:
  *     description: Usar para eliminar una categoría.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Categorias
+ *     parameters:
+ *       - in: body
+ *         name: category
+ *         description: Categoria a eliminar.
+ *         schema:
+ *           type: integer
+ *           required: 
+ *             - id_category
+ *           properties:
+ *             id_category:
+ *               type: integer
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

@@ -57,18 +57,14 @@ const deleteRecipe = async(req, res) => {
 }
 
 const updateRecipe = async (req, res) => {
-    if(!isNaN(req.body.id)){
-        const {name, image, description} = req.body
-        await database.query('UPDATE recipes SET name = $2 and image = $3 and description = $4 WHERE id = $1',[req.params.id, name, image, description],function(err, result, fields) {
-            if (err) {
-                res.status(400).json({error: 'Algo salió mal'});
-            }else{
-                res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
-            }
-        });
-    }else{
-        res.status(400).json({error: 'Parámetro inválido'});
-    }
+    const {id_recipe, name, image, description} = req.body
+    await database.query('UPDATE recipes SET name = $2 and image = $3 and description = $4 WHERE id = $1',[id_recipe, name, image, description],function(err, result, fields) {
+        if (err) {
+            res.status(400).json({error: 'Algo salió mal'});
+        }else{
+            res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
+        }
+    });
 }
 
 module.exports = {
