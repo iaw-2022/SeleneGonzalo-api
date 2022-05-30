@@ -3,14 +3,13 @@ const database = require('../database');
 const getQualificationById = async (req, res) => {
     if(!isNaN(req.params.id)){
         const response = await database.query('SELECT id, id_user, id_recipe, commentary, qualification FROM qualifies WHERE id = $1',[req.params.id]);
-
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
         }else{
             res.status(404).json({error: 'Calificacion no encontrada'});
         }
     }else{
-        res.status(400).json({error: 'invalid parameter'});
+        res.status(400).json({error: 'Parámetro inválido'});
     }
 };
 
@@ -27,13 +26,18 @@ const createQualification = async(req, res) => {
 }
 
 const deleteQualification = async (req,res) => {
-    const {id,id_recipe, id_user} = req.body
-    await database.query('DELETE FROM qualifies WHERE id = $1 and id_recipe = $2 and id_user = $3'), [id, id_recipe, id_user], function(err,result, fields){
-        if (err) {
-            res.status(400).json({error: 'Algo salió mal'});
-        }else{
-            res.json({message: 'La calificación se removió satisfactoriamente'})
+    const {id, id_recipe, id_user} = req.body
+    const check_qualification = await database.query('SELECT * FROM qualifies WHERE id = $1')
+    if (check_qualification.rowCount > 0){
+        await database.query('DELETE FROM qualifies WHERE id = $1 and id_recipe = $2 and id_user = $3'), [id, id_recipe, id_user], function(err,result, fields){
+            if (err) {
+                res.status(400).json({error: 'Algo salió mal'});
+            }else{
+                res.status(200).json({message: 'Calificación removida satisfactoriamente'});
+            }
         }
+    }else{
+        res.status(404).json({error: 'No se encontró la calificación'});
     }
 }
 

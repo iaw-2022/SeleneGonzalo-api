@@ -40,7 +40,7 @@ const createRecipe = async(req, res) => {
 async function assignUpload(id_recipe, id_user, actualDate) {
     await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)', [id_recipe.id, id_user, actualDate, actualDate], function(err, result, fields){
         if (err) {
-            throw Error("error")
+            res.status(400).json({error: 'Algo salió mal'});
         }
     });
 }
