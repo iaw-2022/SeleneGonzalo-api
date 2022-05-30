@@ -39,7 +39,7 @@ const createCategory = async(req, res) => {
 
 const deleteCategory = async(req, res) => {
     const {id_category} = req.body
-    const check_category = await database.query('SELECT * FROM categories WHERE id = $1')
+    const check_category = await database.query('SELECT * FROM categories WHERE id = $1',[id_category])
     if (check_category.rowCount > 0){
         await database.query('DELETE FROM categories WHERE id = $1',[id_category],function(err, result, fields) {
             if (err) {

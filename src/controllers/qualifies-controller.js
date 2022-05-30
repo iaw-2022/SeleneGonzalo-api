@@ -27,7 +27,7 @@ const createQualification = async(req, res) => {
 
 const deleteQualification = async (req,res) => {
     const {id, id_recipe, id_user} = req.body
-    const check_qualification = await database.query('SELECT * FROM qualifies WHERE id = $1')
+    const check_qualification = await database.query('SELECT * FROM qualifies WHERE id = $1',[id])
     if (check_qualification.rowCount > 0){
         await database.query('DELETE FROM qualifies WHERE id = $1 and id_recipe = $2 and id_user = $3'), [id, id_recipe, id_user], function(err,result, fields){
             if (err) {

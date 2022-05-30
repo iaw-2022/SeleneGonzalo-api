@@ -2,10 +2,10 @@ const database = require('../database');
 
 const updateHas = async (req, res) => {
     const {lot,id_ingredient, id_recipe} = req.body
-    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $2');
-    const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $3') 
+    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
+    const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $1',[id_recipe]) 
     if ((check_recipe.rowCount > 0) && (check_ingredient.rowCount > 0)){
-        await database.query('UPDATE has SET id_ingredient = $2 and lot = $1 WHERE id_recipe = $3',[lot,id_ingredient, id_recipe],function(err, result, fields) {
+        await database.query('UPDATE has SET id_ingredient = $2, lot = $1 WHERE id_recipe = $3',[lot,id_ingredient, id_recipe],function(err, result, fields) {
             if (err) {
                 res.status(400).json({error: 'Algo salió mal'});
             }else{
@@ -20,8 +20,8 @@ const updateHas = async (req, res) => {
 const assignHas = async (req, res) =>{
     const {lot,id_ingredient,id_recipe} = req.body
     let actualDate = new Date(Date.now()).toLocaleString('en-US');
-    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $2');
-    const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $3') 
+    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
+    const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $1',[id_recipe]) 
     if ((check_recipe.rowCount > 0) && (check_ingredient.rowCount > 0)){
         await database.query('INSERT INTO has VALUES ($1,$2,$3,$4,$5)', [lot, id_ingredient, id_recipe, actualDate, actualDate], function(err, result, fields){
             if (err) {

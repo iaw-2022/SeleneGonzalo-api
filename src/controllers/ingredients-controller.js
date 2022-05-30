@@ -38,7 +38,7 @@ const createIngredient = async(req, res) => {
 
 const deleteIngredient = async(req, res) => {
     const {id_ingredient} = req.body
-    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1');
+    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
     if (check_ingredient.rowCount > 0){
         await database.query('DELETE FROM ingredients WHERE id = $1',[id_ingredient],function(err, result, fields) {
             if (err) {
