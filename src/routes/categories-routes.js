@@ -52,12 +52,12 @@ router.get('/categories', categoryController.getCategories);
 /**
  * @swagger
  * /categories:
- *   delete:
+ *   post:
  *     description: Usar para eliminar una categoría.
  *     security: 
  *       - bearerAuth: []
  *     tags: 
- *       - Categorias
+ *       - Categorías
  *     parameters:
  *       - in: body
  *         name: category
@@ -81,13 +81,13 @@ router.get('/categories', categoryController.getCategories);
 
 /**
  * @swagger
- * /categories:
+ * /categories/{id}:
  *   delete:
  *     description: Usar para eliminar una categoría.
  *     security: 
  *       - bearerAuth: []
  *     tags: 
- *       - Categorias
+ *       - Categorías
  *     parameters:
  *       - in: body
  *         name: category
@@ -107,7 +107,7 @@ router.get('/categories', categoryController.getCategories);
  *       '404':
  *         description: No se encontró.
  */
- router.delete('/categories',auth, categoryController.deleteCategory);
+ router.delete('/categories/:id',auth, categoryController.deleteCategory);
 
  /**
  * @swagger

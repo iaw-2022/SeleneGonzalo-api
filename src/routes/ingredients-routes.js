@@ -51,7 +51,7 @@ router.get('/ingredients', ingredientController.getIngredients);
 
 /**
  * @swagger
- * /ingredients:
+ * /ingredients/{id}:
  *   delete:
  *     description: Usar para eliminar un ingrediente.
  *     security: 
@@ -59,8 +59,8 @@ router.get('/ingredients', ingredientController.getIngredients);
  *     tags: 
  *       - Ingredientes
  *     parameters:
- *       - in: body
- *         name: ingredient
+ *       - in: path
+ *         name: id_ingredient
  *         description: Ingrediente a eliminar.
  *         schema:
  *           type: integer
@@ -77,7 +77,7 @@ router.get('/ingredients', ingredientController.getIngredients);
  *       '404':
  *         description: No se encontró.
  */
- router.delete('/ingredients',auth, ingredientController.deleteIngredient);
+ router.delete('/ingredients/:id',auth, ingredientController.deleteIngredient);
 
 /**
  * @swagger

@@ -37,18 +37,21 @@ const createCategory = async(req, res) => {
 }
 
 const deleteCategory = async(req, res) => {
-    const {id_category} = req.body
-    const check_category = await database.query('SELECT * FROM categories WHERE id = $1',[id_category])
-    if (check_category.rowCount > 0){
-        await database.query('DELETE FROM categories WHERE id = $1',[id_category],function(err, result, fields) {
-            if (err) {
-                res.status(400).json({error: 'Algo salió mal'});
-            }else{
-                res.status(200).json({message: 'Categoría eliminada satisfactoriamente'});
-            }
-        });
-    } else{
-        res.status(404).json({error: 'No se encontró la categoría'});
+    if(!isNaN(req.params.id)){
+        const check_category = await database.query('SELECT * FROM categories WHERE id = $1',[req.params.id])
+        if (check_category.rowCount > 0){
+            await database.query('DELETE FROM categories WHERE id = $1',[req.params.id],function(err, result, fields) {
+                if (err) {
+                    res.status(400).json({error: 'Algo salió mal'});
+                }else{
+                    res.status(200).json({message: 'Categoría eliminada satisfactoriamente'});
+                }
+            });
+        } else{
+            res.status(404).json({error: 'No se encontró la categoría'});
+        }
+    }else{
+        res.status(400).json({error: 'Parámetro inválido'});
     }
 
 }

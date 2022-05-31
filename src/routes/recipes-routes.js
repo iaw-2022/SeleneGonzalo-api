@@ -114,7 +114,7 @@ router.post('/recipes',auth, recipeController.createRecipe);
 
 /**
  * @swagger
- * /recipes:
+ * /recipes/{id}:
  *   delete:
  *     description: Usar para eliminar una receta.
  *     security: 
@@ -140,7 +140,7 @@ router.post('/recipes',auth, recipeController.createRecipe);
  *       '404':
  *         description: No se encontró.
  */
-router.delete('/recipes',auth, recipeController.deleteRecipe);
+router.delete('/recipes/:id',auth, recipeController.deleteRecipe);
 
 /**
  * @swagger

@@ -37,18 +37,21 @@ const createIngredient = async(req, res) => {
 }
 
 const deleteIngredient = async(req, res) => {
-    const {id_ingredient} = req.body
-    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
-    if (check_ingredient.rowCount > 0){
-        await database.query('DELETE FROM ingredients WHERE id = $1',[id_ingredient],function(err, result, fields) {
-            if (err) {
-                res.status(400).json({error: 'Algo salió mal'});
-            }else{
-                res.status(200).json({message: 'Categoría eliminada satisfactoriamente'});
-            }
-        });
-    } else{
-        res.status(400).json({error: 'No existe el ingrediente'});
+    if(!isNaN(req.params.id)){
+        const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[req.params.id]);
+        if (check_ingredient.rowCount > 0){
+            await database.query('DELETE FROM ingredients WHERE id = $1',[req.params.id],function(err, result, fields) {
+                if (err) {
+                    res.status(400).json({error: 'Algo salió mal'});
+                }else{
+                    res.status(200).json({message: 'Ingrediente eliminado satisfactoriamente'});
+                }
+            });
+        } else{
+            res.status(400).json({error: 'No existe el ingrediente'});
+        }
+    }else{
+        res.status(400).json({error: 'Parámetro inválido'});
     }
 }
 
