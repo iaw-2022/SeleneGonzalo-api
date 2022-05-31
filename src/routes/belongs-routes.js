@@ -34,10 +34,28 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Asignacion exitosa.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta o categoría no existe.
  */
 router.post('/categories/recipe',auth, belongsController.assignBelongs);
 
@@ -67,10 +85,28 @@ router.post('/categories/recipe',auth, belongsController.assignBelongs);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Categorías modifciadas satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta o categoría no existe.
  */
 router.put('/categories/recipe',auth, belongsController.updateBelongs);
 
@@ -91,10 +127,33 @@ router.put('/categories/recipe',auth, belongsController.updateBelongs);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id_categoria:
+ *                 type: integer
+ *                 example: 1
+ *               name:
+ *                 type: string
+ *                 example: Desayuno
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta no existe.
  */
 router.get('/categories/recipe/:id', belongsController.getBelongs);
 

@@ -48,7 +48,7 @@ const deleteIngredient = async(req, res) => {
                 }
             });
         } else{
-            res.status(400).json({error: 'No existe el ingrediente'});
+            res.status(404).json({error: 'No existe el ingrediente'});
         }
     }else{
         res.status(400).json({error: 'Parámetro inválido'});
@@ -61,7 +61,7 @@ const updateIngredient = async (req, res) => {
     if (check_ingredient.rowCount > 0){
         await database.query('UPDATE ingredients SET name = $2 WHERE id = $1',[id_ingredient, name],function(err, result, fields) {
             if (err) {
-                res.status(400).json({error: err});
+                res.status(400).json({error: "Algo salió mal"});
             }else{
                 res.status(200).json({message: 'Ingrediente modificado satisfactoriamente'});
             }

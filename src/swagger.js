@@ -15,7 +15,7 @@ const swaggerOptions = {
                 scheme: 'bearer',
                 in: 'header',
             },
-        },
+        }
     },
     apis: [`${path.join(__dirname, "./routes/*-routes.js")}`],
 }

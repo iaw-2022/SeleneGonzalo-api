@@ -18,7 +18,7 @@ const createQualification = async(req, res) => {
     const {id_user, id_recipe, commentary, qualification} = req.body
     await database.query('INSERT INTO qualifies (id_user, id_recipe, commentary, qualification, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6)', [id_user, id_recipe,commentary, qualification, actualDate, actualDate], function(err, result, fields) {
         if (err) {
-            res.status(400).json({error: err});
+            res.status(400).json({error: "Algo salió mal"});
         }else{
             res.status(200).json({message: 'Calificación enviada satisfactoriamente'});
         }

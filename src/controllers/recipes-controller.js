@@ -40,10 +40,10 @@ const createRecipe = async(req, res) => {
     const {id_user, name, image, description} = req.body
     await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
         if (err) {
-            res.status(400).json({error: err});
+            res.status(400).json({error: "Algo salió mal"});
         }else{
             await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
-            res.status(200).json({message: "Exito"});
+            res.status(200).json({message: "Receta cargada exitosamente"});
         }
     });
 }
@@ -73,7 +73,7 @@ const updateRecipe = async (req, res) => {
     if (check_recipe.rowCount > 0){
         await database.query('UPDATE recipes SET name = $2, image = $3, description = $4 WHERE id = $1',[id_recipe, name, image, description],function(err, result, fields) {
             if (err) {
-                res.status(400).json({error: err});
+                res.status(400).json({error: "Algo salió mal"});
             }else{
                 res.status(200).json({message: 'Receta modificada satisfactoriamente'});
             }

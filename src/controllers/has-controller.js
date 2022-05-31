@@ -9,7 +9,7 @@ const updateHas = async (req, res) => {
             if (err) {
                 res.status(400).json({error: 'Algo salió mal'});
             }else{
-                res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
+                res.status(200).json({message: 'Ingredientes modificados satisfactoriamente'});
             }
         });
     }else{
@@ -27,7 +27,7 @@ const assignHas = async (req, res) =>{
             if (err) {
                 res.status(400).json({error: 'Algo salió mal'});
             }else  
-                res.status(200).json({message: 'Asignación exitosa'});
+                res.status(200).json({message: 'Ingredientes agregados satisfactoriamente'});
         });
     }else{
         res.status(404).json({error: 'Receta o ingrediente no existe'});
@@ -40,7 +40,7 @@ const getHas = async (req, res) => {
         if (check_recipe.rowCount > 0){
             await database.query('SELECT c1.id_ingrediente, ingredients.name, c1.cantidad FROM (SELECT has.id_ingredient AS id_ingrediente, has.lot AS cantidad FROM recipes JOIN has ON recipes.id = has.id_recipe WHERE recipes.id = $1) as c1 INNER JOIN ingredients ON ingredients.id = c1.id_ingrediente', [req.params.id], function(err, result, fields){
                 if (err) {
-                    res.status(400).json({error: err});
+                    res.status(400).json({error: "Algo salió mal"});
                 }else
                     res.status(200).json(result.rows);
             });

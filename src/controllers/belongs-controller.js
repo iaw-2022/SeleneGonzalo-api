@@ -9,7 +9,7 @@ const updateBelongs = async (req, res) => {
             if (err) {
                 res.status(400).json({error: 'Algo salió mal'});
             }else{
-                res.status(200).json({message: 'Receta eliminada satisfactoriamente'});
+                res.status(200).json({message: 'Categorías modifciadas satisfactoriamente'});
             }
         });
     }else{

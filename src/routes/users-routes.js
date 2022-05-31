@@ -19,10 +19,34 @@ const userController = require ('../controllers/users-controller');
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               example: 1
+ *             name:
+ *               type: string
+ *               example: prueba
+ *             email:
+ *               type: string
+ *               example: prueba@mail.com
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró.
  */
 router.get('/users/:id', userController.getUserById);
 
@@ -36,10 +60,36 @@ router.get('/users/:id', userController.getUserById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 1
+ *               name:
+ *                 type: string
+ *                 example: prueba
+ *               email:
+ *                 type: string
+ *                 example: prueba@mail.com  
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró el usuario.
  */
 router.get('/users', userController.getUsers);
 

@@ -25,10 +25,31 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               example: 2
+ *             name:
+ *               type: string
+ *               example: Premezcla sin gluten
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Ingrediente no encontrado.
  */
 router.get('/ingredients/:id', ingredientController.getIngredientById);
 
@@ -42,10 +63,25 @@ router.get('/ingredients/:id', ingredientController.getIngredientById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *       '400':
- *         description: Parámetro inválido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 2
+ *               name:
+ *                 type: string
+ *                 example: Premezcla sin gluten    
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Ingrediente no encontrado.
  */
 router.get('/ingredients', ingredientController.getIngredients);
 
@@ -60,22 +96,36 @@ router.get('/ingredients', ingredientController.getIngredients);
  *       - Ingredientes
  *     parameters:
  *       - in: path
- *         name: id_ingredient
- *         description: Ingrediente a eliminar.
+ *         name: id
  *         schema:
- *           type: integer
- *           required: 
- *             - id_ingredient
- *           properties:
- *             id_ingredient:
- *               type: integer
+ *             type: integer
+ *         required: true
+ *         description: ID del ingrediente a eliminar.
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Ingrediente eliminado satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No existe el ingrediente.
  */
  router.delete('/ingredients/:id',auth, ingredientController.deleteIngredient);
 
@@ -105,10 +155,28 @@ router.get('/ingredients', ingredientController.getIngredients);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Ingrediente modificado satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró el ingrediente.
  */
  router.put('/ingredients',auth, ingredientController.updateIngredient);
 

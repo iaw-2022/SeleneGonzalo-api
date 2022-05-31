@@ -25,10 +25,42 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 4
+ *               id_user:
+ *                 type: integer
+ *                 example: 1
+ *               id_recipe:
+ *                 type: integer
+ *                 example: 2
+ *               commentary:
+ *                 type: string
+ *                 example: Muy buena
+ *               qualification:
+ *                 type: string
+ *                 example: 10/10
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Calificacion no encontrada.
  */
 router.get('/qualifies/:id', qualifiesController.getQualificationById);
 
@@ -64,10 +96,20 @@ router.get('/qualifies/:id', qualifiesController.getQualificationById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Calificación enviada satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *       '404':
- *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  */
 router.post('/qualifies',auth, qualifiesController.createQualification);
 
@@ -100,10 +142,28 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Calificación removida satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró la calificación.
  */
 router.delete('/qualifies',auth, qualifiesController.deleteQualification);
 

@@ -25,10 +25,37 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               example: 2
+ *             name:
+ *               type: string
+ *               example: Pan
+ *             image:
+ *               type: string
+ *               example: https://t1.uc.ltmcdn.com/es/posts/1/8/0/como_hacer_pan_sin_gluten_23081_600.jpg
+ *             description:
+ *               type: string
+ *               example: Pan sin gluten, ideal para acompañar con el mate, hacer hamburguesas, panchos, choripanes, ¡lo que quieras! 
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta no encontrada.
  */
 router.get('/recipes/:id', recipeController.getRecipeById);
 
@@ -49,10 +76,37 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               example: 2
+ *             name:
+ *               type: string
+ *               example: Pan
+ *             image:
+ *               type: string
+ *               example: https://t1.uc.ltmcdn.com/es/posts/1/8/0/como_hacer_pan_sin_gluten_23081_600.jpg
+ *             description:
+ *               type: string
+ *               example: Pan sin gluten, ideal para acompañar con el mate, hacer hamburguesas, panchos, choripanes, ¡lo que quieras! 
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta no encontrada.
  */
 router.get('/recipes/user/:id', recipeController.getRecipeByUser);
 
@@ -66,10 +120,31 @@ router.get('/recipes/user/:id', recipeController.getRecipeByUser);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *       '400':
- *         description: Parámetro inválido.
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 example: 2
+ *               name:
+ *                 type: string
+ *                 example: Pan  
+ *               image:
+ *                 type: string
+ *                 example: https://t1.uc.ltmcdn.com/es/posts/1/8/0/como_hacer_pan_sin_gluten_23081_600.jpg
+ *               description:
+ *                 type: string
+ *                 example: Pan sin gluten, ideal para acompañar con el mate, hacer hamburguesas, panchos, choripanes, ¡lo que quieras!  
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Receta no encontrada.
  */
 router.get('/recipes', recipeController.getRecipes);
 
@@ -105,10 +180,20 @@ router.get('/recipes', recipeController.getRecipes);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Receta cargada exitosamente.
  *       '400':
  *         description: Parámetro inválido.
- *       '404':
- *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  */
 router.post('/recipes',auth, recipeController.createRecipe);
 
@@ -122,23 +207,37 @@ router.post('/recipes',auth, recipeController.createRecipe);
  *     tags: 
  *       - Recetas
  *     parameters:
- *       - in: body
- *         name: recipe
- *         description: Receta a eliminar.
+ *       - in: path
+ *         name: id
  *         schema:
- *           type: integer
- *           required: 
- *             - id_recipe
- *           properties:
- *             id_recipe:
- *               type: integer
+ *             type: integer
+ *         required: true
+ *         description: ID de la receta a eliminar.
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Receta eliminada satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Parámetro inválido.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró la receta.
  */
 router.delete('/recipes/:id',auth, recipeController.deleteRecipe);
 
@@ -174,10 +273,28 @@ router.delete('/recipes/:id',auth, recipeController.deleteRecipe);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: string
+ *               example: Receta modificada satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Algo salió mal.
  *       '404':
  *         description: No se encontró.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: No se encontró la receta.
  */
 router.put('/recipes',auth, recipeController.updateRecipe);
 

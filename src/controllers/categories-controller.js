@@ -29,7 +29,7 @@ const createCategory = async(req, res) => {
     const {name} = req.body
     await database.query('INSERT INTO categories (name, created_at, updated_at) VALUES ($1,$2,$3) returning id', [name, actualDate, actualDate], function(err, result, fields) {
         if (err) {
-            res.status(400).json({error: err});
+            res.status(400).json({error: "Algo salió mal"});
         }else{
             res.status(200).json({message: 'Categoría creada satisfactoriamente'});
         }
@@ -62,7 +62,7 @@ const updateCategory = async (req, res) => {
     if (check_category.rowCount > 0){
         await database.query('UPDATE categories SET name = $2 WHERE id = $1',[id_category, name],function(err, result, fields) {
             if (err) {
-                res.status(400).json({error: err});
+                res.status(400).json({error: "Algo salió mal"});
             }else{
                 res.status(200).json({message: 'Categoria modificada satisfactoriamente'});
             }
