@@ -24,7 +24,7 @@ const getIngredientById = async (req, res) => {
 };
 
 const createIngredient = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('en-US');
+    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
     const {name} = req.body
     console.log(req.body)
     await database.query('INSERT INTO ingredients (name, created_at, updated_at) VALUES ($1,$2,$3) returning id', [name, actualDate, actualDate], function(err, result, fields) {
@@ -52,9 +52,26 @@ const deleteIngredient = async(req, res) => {
     }
 }
 
+const updateIngredient = async (req, res) => {
+    const {id_ingredient, name} = req.body
+    const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
+    if (check_ingredient.rowCount > 0){
+        await database.query('UPDATE ingredients SET name = $2 WHERE id = $1',[id_ingredient, name],function(err, result, fields) {
+            if (err) {
+                res.status(400).json({error: err});
+            }else{
+                res.status(200).json({message: 'Ingrediente modificado satisfactoriamente'});
+            }
+        });
+    }else{
+        res.status(404).json({error: 'No se encontró el ingrediente'});
+    }
+}
+
 module.exports = {
     getIngredients,
     getIngredientById,
     createIngredient,
+    updateIngredient,
     deleteIngredient
 }

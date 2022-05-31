@@ -10,7 +10,7 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * /ingredients-recipe:
+ * /ingredients/recipe:
  *   post:
  *     description: Usar para agregar los ingredientes de una receta.
  *     security: 
@@ -42,11 +42,11 @@ router.get('/authorized',auth, function (req, res) {
  *       '404':
  *         description: No se encontró.
  */
-router.post('/ingredients-recipe',auth, hasController.assignHas);
+router.post('/ingredients/recipe',auth, hasController.assignHas);
 
 /**
  * @swagger
- * /ingredients-recipe:
+ * /ingredients/recipe:
  *   put:
  *     description: Usar para modificar los ingredientes de una receta.
  *     security: 
@@ -78,6 +78,30 @@ router.post('/ingredients-recipe',auth, hasController.assignHas);
  *       '404':
  *         description: No se encontró.
  */
-router.put('/ingredients-recipe',auth, hasController.updateHas);
+router.put('/ingredients/recipe',auth, hasController.updateHas);
+
+/**
+ * @swagger
+ * /ingredients/recipe/{id}:
+ *   get:
+ *     description: Usar para solicitar los ingredientes de una receta.
+ *     tags: 
+ *       - Ingredientes receta
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la receta
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
+router.get('/ingredients/recipe/:id', hasController.getHas);
 
 module.exports = router;

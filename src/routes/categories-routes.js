@@ -77,6 +77,36 @@ router.get('/categories', categoryController.getCategories);
  *       '404':
  *         description: No se encontró.
  */
+ router.post('/categories',auth, categoryController.createCategory);
+
+/**
+ * @swagger
+ * /categories:
+ *   delete:
+ *     description: Usar para eliminar una categoría.
+ *     security: 
+ *       - bearerAuth: []
+ *     tags: 
+ *       - Categorias
+ *     parameters:
+ *       - in: body
+ *         name: category
+ *         description: Categoria a eliminar.
+ *         schema:
+ *           type: integer
+ *           required: 
+ *             - id_category
+ *           properties:
+ *             id_category:
+ *               type: integer
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
  router.delete('/categories',auth, categoryController.deleteCategory);
 
 module.exports = router;

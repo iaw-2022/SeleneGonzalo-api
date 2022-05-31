@@ -34,7 +34,7 @@ router.get('/recipes/:id', recipeController.getRecipeById);
 
 /**
  * @swagger
- * /recipes/{id_user}:
+ * /recipes/user/{id}:
  *   get:
  *     description: Usar para solicitar una receta por usuario.
  *     tags: 
@@ -54,7 +54,7 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *       '404':
  *         description: No se encontró.
  */
-router.get('/recipes/:id_user', recipeController.getRecipeByUser);
+router.get('/recipes/user/:id', recipeController.getRecipeByUser);
 
 /**
  * @swagger
@@ -129,18 +129,9 @@ router.post('/recipes',auth, recipeController.createRecipe);
  *           type: integer
  *           required: 
  *             - id_recipe
- *             - name
- *             - image
- *             - description
  *           properties:
  *             id_recipe:
  *               type: integer
- *             name:
- *               type: string
- *             image:
- *               type: string
- *             description:   
- *               type: string
  *     responses:
  *       '200':
  *         description: Exito en la consulta.

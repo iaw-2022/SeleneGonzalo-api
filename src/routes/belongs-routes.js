@@ -10,7 +10,7 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * /categories-recipe:
+ * /categories/recipe:
  *   post:
  *     description: Usar para cargar las categorías de una receta.
  *     security: 
@@ -39,11 +39,11 @@ router.get('/authorized',auth, function (req, res) {
  *       '404':
  *         description: No se encontró.
  */
-router.post('/categories-recipe',auth, belongsController.assignBelongs);
+router.post('/categories/recipe',auth, belongsController.assignBelongs);
 
 /**
  * @swagger
- * /categories-recipe:
+ * /categories/recipe:
  *   put:
  *     description: Usar para modificar las categorías de una receta.
  *     security: 
@@ -72,6 +72,30 @@ router.post('/categories-recipe',auth, belongsController.assignBelongs);
  *       '404':
  *         description: No se encontró.
  */
-router.put('/categories-recipe',auth, belongsController.updateBelongs);
+router.put('/categories/recipe',auth, belongsController.updateBelongs);
+
+/**
+ * @swagger
+ * /categories/recipe/{id}:
+ *   get:
+ *     description: Usar para solicitar las categorias de una receta.
+ *     tags: 
+ *       - Categorías receta
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la receta
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
+router.get('/categories/recipe/:id', belongsController.getBelongs);
 
 module.exports = router;

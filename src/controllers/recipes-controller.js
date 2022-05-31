@@ -1,7 +1,7 @@
 const database = require('../database');
 
 const getRecipes = async (req, res) => {
-    const response = await database.query('SELECT recipes.id, recipes.name, image, description, categories.name AS category FROM recipes join belongs on id_recipe = recipes.id join categories on categories.id = belongs.id_category');
+    const response = await database.query('SELECT id, name, image, description FROM recipes');
     if(response.rows.length > 0){
         res.status(200).json(response.rows);
     }else{
@@ -11,7 +11,7 @@ const getRecipes = async (req, res) => {
 
 const getRecipeById = async (req, res) => {
     if(!isNaN(req.params.id)){
-        const response = await database.query('SELECT recipes.id, recipes.name, image, description, categories.name AS category FROM recipes join belongs on id_recipe = recipes.id join categories on categories.id = belongs.id_category WHERE recipes.id = $1',[req.params.id]);
+        const response = await database.query('SELECT id, name, image, description FROM recipes WHERE id = $1',[req.params.id]);
         if(response.rowCount > 0){
             res.status(200).json(response.rows[0]);
         }else{
@@ -24,9 +24,9 @@ const getRecipeById = async (req, res) => {
 
 const getRecipeByUser = async (req, res) => {
     if(!isNaN(req.params.id)){
-        const response = await database.query('SELECT recipes.id, recipes.name, image, description, categories.name AS category FROM recipes join belongs on id_recipe = recipes.id join categories on categories.id = belongs.id_category join upload on id_recipe = recipes.id WHERE upload.id_user = $1',[req.params.id]);
+        const response = await database.query('SELECT recipes.id, name, image, description FROM recipes join upload on recipes.id = upload.id_recipe WHERE upload.id_user = $1',[req.params.id]);
         if(response.rows.length > 0){
-            res.status(200).json(response.rows[0]);
+            res.status(200).json(response.rows);
         }else{
             res.status(404).json({error: 'Receta no encontrada'});
         }
@@ -38,23 +38,12 @@ const getRecipeByUser = async (req, res) => {
 const createRecipe = async(req, res) => {
     let actualDate = new Date(Date.now()).toLocaleString('es-AR');
     const {id_user, name, image, description} = req.body
-    await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], function(err, result, fields) {
+    await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
         if (err) {
             res.status(400).json({error: err});
         }else{
-            assignUpload(result.rows[0], id_user, actualDate)
-            .then (res.status(200).json({id_recipe: result.rows[0].id}))
-            .catch (res.status(400).json({error: 'Algo salió mal'}));
-        }
-    });
-}
-
-async function assignUpload(id_recipe, id_user, actualDate) {
-    await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)', [id_recipe.id_recipe, id_user, actualDate, actualDate], function(err, result, fields){
-        if (err) {
-            res.status(400).json({error: err});
-        }else{
-            res.status(200).json({message: 'Relación cargada'});
+            await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
+            res.status(200).json({message: "Exito"});
         }
     });
 }

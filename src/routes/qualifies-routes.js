@@ -85,17 +85,11 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  *         name: qualification
  *         description: Calificación a eliminar.
  *         schema:
- *           type: object
+ *           type: integer
  *           required: 
  *             - id
- *             - id_recipe
- *             - id_user
  *           properties:
  *             id:
- *               type: integer
- *             id_recipe:
- *               type: integer
- *             id_user:
  *               type: integer
  *     responses:
  *       '200':
