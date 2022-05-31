@@ -79,4 +79,37 @@ router.get('/ingredients', ingredientController.getIngredients);
  */
  router.delete('/ingredients',auth, ingredientController.deleteIngredient);
 
+/**
+ * @swagger
+ * /ingredients:
+ *   put:
+ *     description: Usar para modificar un ingrediente.
+ *     security: 
+ *       - bearerAuth: []
+ *     tags: 
+ *       - Ingredientes
+ *     parameters:
+ *       - in: body
+ *         name: ingredient
+ *         description: Datos a modificar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id_ingredient
+ *             - name
+ *           properties:
+ *             id_ingredient:
+ *               type: integer
+ *             name:
+ *               type: string
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
+ router.put('/ingredients',auth, ingredientController.updateIngredient);
+
 module.exports = router;

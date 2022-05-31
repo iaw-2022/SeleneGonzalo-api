@@ -109,4 +109,37 @@ router.get('/categories', categoryController.getCategories);
  */
  router.delete('/categories',auth, categoryController.deleteCategory);
 
+ /**
+ * @swagger
+ * /categories:
+ *   put:
+ *     description: Usar para modificar una categoría.
+ *     security: 
+ *       - bearerAuth: []
+ *     tags: 
+ *       - Categorías
+ *     parameters:
+ *       - in: body
+ *         name: category
+ *         description: Datos a modificar.
+ *         schema:
+ *           type: object
+ *           required: 
+ *             - id_category
+ *             - name
+ *           properties:
+ *             id_category:
+ *               type: integer
+ *             name:
+ *               type: string
+ *     responses:
+ *       '200':
+ *         description: Exito en la consulta.
+ *       '400':
+ *         description: Parámetro inválido.
+ *       '404':
+ *         description: No se encontró.
+ */
+router.put('/categories',auth, categoryController.updateCategory);
+
 module.exports = router;
