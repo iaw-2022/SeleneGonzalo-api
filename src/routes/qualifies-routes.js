@@ -73,7 +73,7 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
 
 /**
  * @swagger
- * /qualifies:
+ * /qualifies/{id}:
  *   delete:
  *     description: Usar para eliminar una calificación.
  *     security: 
@@ -99,6 +99,6 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  *       '404':
  *         description: No se encontró.
  */
-router.delete('/qualifies',auth, qualifiesController.deleteQualification);
+router.delete('/qualifies/:id',auth, qualifiesController.deleteQualification);
 
 module.exports = router;
