@@ -36,5 +36,5 @@ app.use(function (err, req, res, next) {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //PORT
-app.listen(3000);
+app.listen(process.env.PORT);
 console.log('Server on port 3000');
