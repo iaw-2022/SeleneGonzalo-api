@@ -10,6 +10,28 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Ingredientes-receta:
+ *       type: object
+ *       properties:
+ *         id_ingrediente:
+ *           type: integer
+ *           description: "El id del ingrediente de la receta"
+ *         name:
+ *           type: string
+ *           description: "El nombre del ingrediente de la receta"
+ *         lot:
+ *           type: string
+ *           description: "Cantidad del ingrediente en la receta" 
+ *       example:
+ *         id_recipe: "2"
+ *         name: "Premezcla sin gluten"
+ *         lot: "200 gr"
+ */
+
+/**
+ * @swagger
  * /ingredients/recipe:
  *   post:
  *     description: Usar para agregar los ingredientes de una receta.
@@ -36,29 +58,11 @@ router.get('/authorized',auth, function (req, res) {
  *               type: integer
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Ingredientes agregados satisfactoriamente.
+ *         description: Ingredientes agregados satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta o ingrediente no existe.
+ *         description: Receta o ingrediente no existe.
  */
 router.post('/ingredients/recipe',auth, hasController.assignHas);
 
@@ -90,29 +94,11 @@ router.post('/ingredients/recipe',auth, hasController.assignHas);
  *               type: integer
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Ingredientes modificados satisfactoriamente.
+ *         description: Ingredientes modificados satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta o ingrediente no existe.
+ *         description: Receta o ingrediente no existe.
  */
 router.put('/ingredients/recipe',auth, hasController.updateHas);
 
@@ -133,36 +119,16 @@ router.put('/ingredients/recipe',auth, hasController.updateHas);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id_ingrediente:
- *                 type: integer
- *                 example: 3
- *               name:
- *                 type: string
- *                 example: Azucar
- *               cantidad:
- *                 type: string
- *                 example: 20 g
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Ingredientes-receta'
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta no existe.
+ *         description: Receta no existe.
  */
 router.get('/ingredients/recipe/:id', hasController.getHas);
 

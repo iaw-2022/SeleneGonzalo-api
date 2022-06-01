@@ -3,10 +3,12 @@ const path = require("path")
 
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: "3.0.0",
         info: {
             title: 'Recetaccs API',
             description: 'API Docs',
-            servers: [config.SERVER]
+            servers: [config.SERVER],
+            version: "1.0.0"
         },
         securityDefinitions: {
             bearerAuth: {

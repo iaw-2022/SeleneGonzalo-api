@@ -10,6 +10,24 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Ingredientes:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: "El id del ingrediente generado automáticamente"
+ *         name:
+ *           type: string
+ *           description: "Nombre del ingrediente"
+ *       example:
+ *         id: "2"
+ *         name: "Premezcla sin gluten"
+ */
+
+/**
+ * @swagger
  * /ingredients/{id}:
  *   get:
  *     description: Usar para solicitar un ingrediente.
@@ -25,31 +43,14 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             id:
- *               type: integer
- *               example: 2
- *             name:
- *               type: string
- *               example: Premezcla sin gluten
+ *         content:
+ *           application/json:
+ *             schema:
+ *                 $ref: '#components/schemas/Ingredientes' 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Ingrediente no encontrado.
+ *         description: No se encontró el ingrediente.
  */
 router.get('/ingredients/:id', ingredientController.getIngredientById);
 
@@ -57,31 +58,20 @@ router.get('/ingredients/:id', ingredientController.getIngredientById);
  * @swagger
  * /ingredients:
  *   get:
- *     description: Usar para obtener todas las categorías.
+ *     description: Usar para obtener todos los ingredientes.
  *     tags: 
  *       - Ingredientes
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id:
- *                 type: integer
- *                 example: 2
- *               name:
- *                 type: string
- *                 example: Premezcla sin gluten    
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Ingredientes' 
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Ingrediente no encontrado.
+ *         description: No se encontró el ingrediente.
  */
 router.get('/ingredients', ingredientController.getIngredients);
 
@@ -103,29 +93,11 @@ router.get('/ingredients', ingredientController.getIngredients);
  *         description: ID del ingrediente a eliminar.
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Ingrediente eliminado satisfactoriamente.
+ *         description: Ingrediente eliminado satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No existe el ingrediente.
+ *         description: No existe el ingrediente.
  */
  router.delete('/ingredients/:id',auth, ingredientController.deleteIngredient);
 
@@ -154,29 +126,11 @@ router.get('/ingredients', ingredientController.getIngredients);
  *               type: string
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Ingrediente modificado satisfactoriamente.
+ *         description: Ingrediente modificado satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró el ingrediente.
+ *         description: No se encontró el ingrediente.
  */
  router.put('/ingredients',auth, ingredientController.updateIngredient);
 

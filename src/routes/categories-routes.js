@@ -10,6 +10,24 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Categorías:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: "El id de categoría generado automáticamente"
+ *         name:
+ *           type: string
+ *           description: "Nombre de la categoría"
+ *       example:
+ *         id: "1"
+ *         name: "Desayuno"
+ */
+
+/**
+ * @swagger
  * /categories/{id}:
  *   get:
  *     description: Usar para solicitar una categoría.
@@ -25,31 +43,14 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             id:
- *               type: integer
- *               example: 1
- *             name:
- *               type: string
- *               example: Desayuno
+ *         content:
+ *           application/json:
+ *             schema:
+ *                 $ref: '#components/schemas/Categorías' 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró el usuario.
+ *         description: No se encontró la categoría.  
  */
 router.get('/categories/:id', categoryController.getCategorieById);
 
@@ -63,25 +64,14 @@ router.get('/categories/:id', categoryController.getCategorieById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id:
- *                 type: integer
- *                 example: 1
- *               name:
- *                 type: string
- *                 example: Desayuno    
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Categorías' 
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró.
+ *         description: No se encontró la categoría.
  */
 router.get('/categories', categoryController.getCategories);
 
@@ -103,29 +93,11 @@ router.get('/categories', categoryController.getCategories);
  *         description: ID de la categoría a eliminar.
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Categoría eliminada satisfactoriamente.
+ *         description: Categoría eliminada satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró la categoría.
+ *         description: No se encontró la categoría.
  */
  router.delete('/categories/:id',auth, categoryController.deleteCategory);
 
@@ -154,29 +126,11 @@ router.get('/categories', categoryController.getCategories);
  *               type: string
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Categoría modificada satisfactoriamente.
+ *         description: Categoría modificada satisfactoriamente.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró la categoría.
+ *         description: No se encontró la categoría.
  */
 router.put('/categories',auth, categoryController.updateCategory);
 

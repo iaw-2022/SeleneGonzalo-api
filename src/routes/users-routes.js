@@ -4,6 +4,28 @@ const userController = require ('../controllers/users-controller');
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Usuarios:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: "El id del usuario"
+ *         name:
+ *           type: string
+ *           description: "Nombre del usuario"
+ *         email:
+ *           type: string
+ *           description: "Email del usuario" 
+ *       example:
+ *         id: "1"
+ *         name: "Selene"
+ *         email: "selene@mail.com" 
+ */
+
+/**
+ * @swagger
  * /users/{id}:
  *   get:
  *     description: Usar para solicitar un usuario.
@@ -19,34 +41,14 @@ const userController = require ('../controllers/users-controller');
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             id:
- *               type: integer
- *               example: 1
- *             name:
- *               type: string
- *               example: prueba
- *             email:
- *               type: string
- *               example: prueba@mail.com
+ *         content:
+ *           application/json:
+ *             schema:
+ *                 $ref: '#components/schemas/Usuarios' 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró.
+ *         description: No se encontró el usuario.
  */
 router.get('/users/:id', userController.getUserById);
 
@@ -60,36 +62,16 @@ router.get('/users/:id', userController.getUserById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id:
- *                 type: integer
- *                 example: 1
- *               name:
- *                 type: string
- *                 example: prueba
- *               email:
- *                 type: string
- *                 example: prueba@mail.com  
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Usuarios'  
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró el usuario.
+ *         description: No se encontró ningún usuario.
  */
 router.get('/users', userController.getUsers);
 

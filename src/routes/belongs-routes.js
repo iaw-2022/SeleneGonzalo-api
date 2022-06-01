@@ -10,6 +10,24 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Categorías-receta:
+ *       type: object
+ *       properties:
+ *         id_categoria:
+ *           type: integer
+ *           description: "El id de la categoría de la receta"
+ *         name:
+ *           type: string
+ *           description: "El nombre de la categoría de la receta"
+ *       example:
+ *         id_category: "2"
+ *         name: "Almuerzo"
+ */
+
+/**
+ * @swagger
  * /categories/recipe:
  *   post:
  *     description: Usar para cargar las categorías de una receta.
@@ -33,29 +51,12 @@ router.get('/authorized',auth, function (req, res) {
  *               type: integer
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Asignacion exitosa.
+ *         description: Asignacion exitosa.
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta o categoría no existe.
+ *         description: Receta o categoría no existe. 
+ * 
  */
 router.post('/categories/recipe',auth, belongsController.assignBelongs);
 
@@ -84,29 +85,11 @@ router.post('/categories/recipe',auth, belongsController.assignBelongs);
  *               type: integer
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Categorías modifciadas satisfactoriamente.
+ *         description: Categorías modifciadas satisfactoriamente. 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta o categoría no existe.
+ *         description: Receta o categoría no existe.
  */
 router.put('/categories/recipe',auth, belongsController.updateBelongs);
 
@@ -127,33 +110,16 @@ router.put('/categories/recipe',auth, belongsController.updateBelongs);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id_categoria:
- *                 type: integer
- *                 example: 1
- *               name:
- *                 type: string
- *                 example: Desayuno
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Categorías-receta'
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Receta no existe.
+ *         description: Receta o categoría no existe. 
  */
 router.get('/categories/recipe/:id', belongsController.getBelongs);
 

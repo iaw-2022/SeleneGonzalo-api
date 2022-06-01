@@ -10,6 +10,36 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Calificaciones:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: "El id de la calificación"
+ *         id_user:
+ *           type: integer
+ *           description: "El id del usuario que realizó la calificación"
+ *         id_recipe:
+ *           type: integer
+ *           description: "El id de la receta que calificó el usuario"
+ *         commentary:
+ *           type: string
+ *           description: "Comentario del usuario"
+ *         qualification:
+ *           type: string
+ *           description: "Puntaje final del usuario a la receta"   
+ *       example:
+ *         id: "3"
+ *         id_user: "1"
+ *         id_recipe: "2"
+ *         commentary: "Muy buena"
+ *         qualification: "10/10"  
+ */
+
+/**
+ * @swagger
  * /qualifies/{id}:
  *   get:
  *     description: Usar para obtener una calificación.
@@ -25,42 +55,16 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               id:
- *                 type: integer
- *                 example: 4
- *               id_user:
- *                 type: integer
- *                 example: 1
- *               id_recipe:
- *                 type: integer
- *                 example: 2
- *               commentary:
- *                 type: string
- *                 example: Muy buena
- *               qualification:
- *                 type: string
- *                 example: 10/10
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/Calificaciones'
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Parámetro inválido.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Calificacion no encontrada.
+ *         description: Calificacion no encontrada.
  */
 router.get('/qualifies/:id', qualifiesController.getQualificationById);
 
@@ -95,21 +99,9 @@ router.get('/qualifies/:id', qualifiesController.getQualificationById);
  *               type: string
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Calificación enviada satisfactoriamente.
+ *         description: Calificación enviada satisfactoriamente. 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  */
 router.post('/qualifies',auth, qualifiesController.createQualification);
 
@@ -141,29 +133,11 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  *               type: integer
  *     responses:
  *       '200':
- *         description: Exito en la consulta.
- *         schema:
- *           type: object
- *           properties:
- *             success:
- *               type: string
- *               example: Calificación removida satisfactoriamente.
+ *         description: Calificación removida satisfactoriamente. 
  *       '400':
  *         description: Parámetro inválido.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: Algo salió mal.
  *       '404':
- *         description: No se encontró.
- *         schema:
- *           type: object
- *           properties:
- *             error:
- *               type: string
- *               example: No se encontró la calificación.
+ *         description: No se encontró la calificación.
  */
 router.delete('/qualifies',auth, qualifiesController.deleteQualification);
 
