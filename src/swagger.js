@@ -11,13 +11,13 @@ const swaggerOptions = {
             version: "1.0.0"
         },
         securityDefinitions: {
-            bearerAuth: {
+            apiKeyAuth: {
                 type: 'apiKey',
-                name: 'Authorization',
+                name: 'X-Api-Key',
                 scheme: 'bearer',
                 in: 'header',
             },
-        }
+        },
     },
     apis: [`${path.join(__dirname, "./routes/*-routes.js")}`],
 }
