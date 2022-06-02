@@ -42,10 +42,8 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *                 $ref: '#definitions/Categorías' 
+ *         schema:
+ *           $ref: '#definitions/Categorías' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -63,12 +61,10 @@ router.get('/categories/:id', categoryController.getCategorieById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Categorías' 
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Categorías' 
  *       '404':
  *         description: No se encontró la categoría.
  */

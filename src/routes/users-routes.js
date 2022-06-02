@@ -61,12 +61,10 @@ router.get('/users/:id', userController.getUserById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Usuarios'  
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Usuarios'  
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

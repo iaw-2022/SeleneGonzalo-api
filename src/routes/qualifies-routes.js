@@ -54,12 +54,10 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Calificaciones'
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Calificaciones'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

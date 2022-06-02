@@ -109,12 +109,10 @@ router.put('/categories/recipe',auth, belongsController.updateBelongs);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Categorías-receta'
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Categorías-receta'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

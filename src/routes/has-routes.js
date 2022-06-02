@@ -118,12 +118,10 @@ router.put('/ingredients/recipe',auth, hasController.updateHas);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Ingredientes-receta'
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Ingredientes-receta'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

@@ -42,10 +42,8 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *                 $ref: '#definitions/Ingredientes' 
+ *         schema:
+ *           $ref: '#definitions/Ingredientes' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -63,12 +61,10 @@ router.get('/ingredients/:id', ingredientController.getIngredientById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Ingredientes' 
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Ingredientes' 
  *       '404':
  *         description: No se encontró el ingrediente.
  */

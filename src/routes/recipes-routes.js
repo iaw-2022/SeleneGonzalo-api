@@ -51,10 +51,8 @@ router.get('/authorized',auth, function (req, res) {
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *                 $ref: '#definitions/Recetas' 
+ *         schema:
+ *           $ref: '#definitions/Recetas' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -79,10 +77,8 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *                 $ref: '#definitions/Recetas' 
+ *         schema:
+ *           $ref: '#definitions/Recetas' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -100,12 +96,10 @@ router.get('/recipes/user/:id', recipeController.getRecipeByUser);
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#definitions/Recetas'  
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#definitions/Recetas'  
  *       '404':
  *         description: Receta no encontrada.
  */
