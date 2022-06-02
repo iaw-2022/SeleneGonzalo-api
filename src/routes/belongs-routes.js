@@ -61,39 +61,6 @@ router.post('/categories/recipe',auth, belongsController.assignBelongs);
 
 /**
  * @swagger
- * /categories/recipe:
- *   put:
- *     description: Usar para modificar las categorías de una receta.
- *     security: 
- *       - bearerAuth: []
- *     tags: 
- *       - Categorías receta
- *     parameters:
- *       - in: body
- *         name: categories recipe
- *         description: Datos a modificar.
- *         schema:
- *           type: object
- *           required: 
- *             - id_recipe
- *             - id_category
- *           properties:
- *             id_recipe:
- *               type: integer
- *             id_category:
- *               type: integer
- *     responses:
- *       '200':
- *         description: Categorías modifciadas satisfactoriamente. 
- *       '400':
- *         description: Parámetro inválido.
- *       '404':
- *         description: Receta o categoría no existe.
- */
-router.put('/categories/recipe',auth, belongsController.updateBelongs);
-
-/**
- * @swagger
  * /categories/recipe/{id}:
  *   get:
  *     description: Usar para solicitar las categorias de una receta.
