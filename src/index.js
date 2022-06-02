@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req,res) => {
     res.json({
-        message : 'api',
+        message : 'Bienvenido a la API de RECETACCS',
     })
 });
 
