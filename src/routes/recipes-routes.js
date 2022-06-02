@@ -8,30 +8,30 @@ router.get('/authorized',auth, function (req, res) {
     res.send('Secured Resource');
 });
 
+
 /**
  * @swagger
- * components:
- *   schemas:
- *     Recetas:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: "El id de la receta generado automáticamente"
- *         name:
- *           type: string
- *           description: "Nombre de la receta"
- *         image:
- *           type: string
- *           description: "Imagen de la categoría"
- *         description:
- *           type: string
- *           description: "Descripcion de la categoría"
- *       example:
- *         id: "2"
- *         name: "Pan"
- *         image: "pan.jpg"
- *         description: "descripción de los pasos para hacer pan"
+ * definitions:
+ *   Recetas:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: integer
+ *         description: "El id de la receta generado automáticamente"
+ *       name:
+ *         type: string
+ *         description: "Nombre de la receta"
+ *       image:
+ *         type: string
+ *         description: "Imagen de la categoría"
+ *       description:
+ *         type: string
+ *         description: "Descripcion de la categoría"
+ *     example:
+ *       id: "2"
+ *       name: "Pan"
+ *       image: "pan.jpg"
+ *       description: "descripción de los pasos para hacer pan"
  */
 
 /**
@@ -54,7 +54,7 @@ router.get('/authorized',auth, function (req, res) {
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#components/schemas/Recetas' 
+ *                 $ref: '#definitions/Recetas' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -82,7 +82,7 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#components/schemas/Recetas' 
+ *                 $ref: '#definitions/Recetas' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -105,7 +105,7 @@ router.get('/recipes/user/:id', recipeController.getRecipeByUser);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Recetas'  
+ *                 $ref: '#definitions/Recetas'  
  *       '404':
  *         description: Receta no encontrada.
  */

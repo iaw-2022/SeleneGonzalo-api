@@ -10,32 +10,31 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Calificaciones:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: "El id de la calificación"
- *         id_user:
- *           type: integer
- *           description: "El id del usuario que realizó la calificación"
- *         id_recipe:
- *           type: integer
- *           description: "El id de la receta que calificó el usuario"
- *         commentary:
- *           type: string
- *           description: "Comentario del usuario"
- *         qualification:
- *           type: string
- *           description: "Puntaje final del usuario a la receta"   
- *       example:
- *         id: "3"
- *         id_user: "1"
- *         id_recipe: "2"
- *         commentary: "Muy buena"
- *         qualification: "10/10"  
+ * definitions:
+ *   Calificaciones:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: integer
+ *         description: "El id de la calificación"
+ *       id_user:
+ *         type: integer
+ *         description: "El id del usuario que realizó la calificación"
+ *       id_recipe:
+ *         type: integer
+ *         description: "El id de la receta que calificó el usuario"
+ *       commentary:
+ *         type: string
+ *         description: "Comentario del usuario"
+ *       qualification:
+ *         type: string
+ *         description: "Puntaje final del usuario a la receta"   
+ *     example:
+ *       id: "3"
+ *       id_user: "1"
+ *       id_recipe: "2"
+ *       commentary: "Muy buena"
+ *       qualification: "10/10"  
  */
 
 /**
@@ -60,7 +59,7 @@ router.get('/authorized',auth, function (req, res) {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Calificaciones'
+ *                 $ref: '#definitions/Calificaciones'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

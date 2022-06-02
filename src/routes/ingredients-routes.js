@@ -10,20 +10,19 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Ingredientes:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: "El id del ingrediente generado automáticamente"
- *         name:
- *           type: string
- *           description: "Nombre del ingrediente"
- *       example:
- *         id: "2"
- *         name: "Premezcla sin gluten"
+ * definitions:
+ *   Ingredientes:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: integer
+ *         description: "El id del ingrediente generado automáticamente"
+ *       name:
+ *         type: string
+ *         description: "Nombre del ingrediente"
+ *     example:
+ *       id: "2"
+ *       name: "Premezcla sin gluten"
  */
 
 /**
@@ -46,7 +45,7 @@ router.get('/authorized',auth, function (req, res) {
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#components/schemas/Ingredientes' 
+ *                 $ref: '#definitions/Ingredientes' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -69,7 +68,7 @@ router.get('/ingredients/:id', ingredientController.getIngredientById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Ingredientes' 
+ *                 $ref: '#definitions/Ingredientes' 
  *       '404':
  *         description: No se encontró el ingrediente.
  */

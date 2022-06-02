@@ -4,24 +4,23 @@ const userController = require ('../controllers/users-controller');
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Usuarios:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: "El id del usuario"
- *         name:
- *           type: string
- *           description: "Nombre del usuario"
- *         email:
- *           type: string
- *           description: "Email del usuario" 
- *       example:
- *         id: "1"
- *         name: "Selene"
- *         email: "selene@mail.com" 
+ * definitions:
+ *   Usuarios:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: integer
+ *         description: "El id del usuario"
+ *       name:
+ *         type: string
+ *         description: "Nombre del usuario"
+ *       email:
+ *         type: string
+ *         description: "Email del usuario" 
+ *     example:
+ *       id: "1"
+ *       name: "Selene"
+ *       email: "selene@mail.com" 
  */
 
 /**
@@ -44,7 +43,7 @@ const userController = require ('../controllers/users-controller');
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#components/schemas/Usuarios' 
+ *                 $ref: '#definitions/Usuarios' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -67,7 +66,7 @@ router.get('/users/:id', userController.getUserById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Usuarios'  
+ *                 $ref: '#definitions/Usuarios'  
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

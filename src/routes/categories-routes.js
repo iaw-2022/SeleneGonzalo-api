@@ -10,20 +10,19 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Categorías:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           description: "El id de categoría generado automáticamente"
- *         name:
- *           type: string
- *           description: "Nombre de la categoría"
- *       example:
- *         id: "1"
- *         name: "Desayuno"
+ * definitions:
+ *   Categorías:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: integer
+ *         description: "El id de categoría generado automáticamente"
+ *       name:
+ *         type: string
+ *         description: "Nombre de la categoría"
+ *     example:
+ *       id: "1"
+ *       name: "Desayuno"
  */
 
 /**
@@ -46,7 +45,7 @@ router.get('/authorized',auth, function (req, res) {
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#components/schemas/Categorías' 
+ *                 $ref: '#definitions/Categorías' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
@@ -69,7 +68,7 @@ router.get('/categories/:id', categoryController.getCategorieById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Categorías' 
+ *                 $ref: '#definitions/Categorías' 
  *       '404':
  *         description: No se encontró la categoría.
  */

@@ -10,20 +10,19 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Categorías-receta:
- *       type: object
- *       properties:
- *         id_categoria:
- *           type: integer
- *           description: "El id de la categoría de la receta"
- *         name:
- *           type: string
- *           description: "El nombre de la categoría de la receta"
- *       example:
- *         id_category: "2"
- *         name: "Almuerzo"
+ * definitions:
+ *   Categorías-receta:
+ *     type: object
+ *     properties:
+ *       id_categoria:
+ *         type: integer
+ *         description: "El id de la categoría de la receta"
+ *       name:
+ *         type: string
+ *         description: "El nombre de la categoría de la receta"
+ *     example:
+ *       id_category: "2"
+ *       name: "Almuerzo"
  */
 
 /**
@@ -115,7 +114,7 @@ router.put('/categories/recipe',auth, belongsController.updateBelongs);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Categorías-receta'
+ *                 $ref: '#definitions/Categorías-receta'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

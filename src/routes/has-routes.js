@@ -10,24 +10,23 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Ingredientes-receta:
- *       type: object
- *       properties:
- *         id_ingrediente:
- *           type: integer
- *           description: "El id del ingrediente de la receta"
- *         name:
- *           type: string
- *           description: "El nombre del ingrediente de la receta"
- *         lot:
- *           type: string
- *           description: "Cantidad del ingrediente en la receta" 
- *       example:
- *         id_recipe: "2"
- *         name: "Premezcla sin gluten"
- *         lot: "200 gr"
+ * definitions:
+ *   Ingredientes-receta:
+ *     type: object
+ *     properties:
+ *       id_ingrediente:
+ *         type: integer
+ *         description: "El id del ingrediente de la receta"
+ *       name:
+ *         type: string
+ *         description: "El nombre del ingrediente de la receta"
+ *       lot:
+ *         type: string
+ *         description: "Cantidad del ingrediente en la receta" 
+ *     example:
+ *       id_recipe: "2"
+ *       name: "Premezcla sin gluten"
+ *       lot: "200 gr"
  */
 
 /**
@@ -124,7 +123,7 @@ router.put('/ingredients/recipe',auth, hasController.updateHas);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#components/schemas/Ingredientes-receta'
+ *                 $ref: '#definitions/Ingredientes-receta'
  *       '400':
  *         description: Parámetro inválido.
  *       '404':

@@ -3,7 +3,6 @@ const path = require("path")
 
 const swaggerOptions = {
     swaggerDefinition: {
-        openapi: "3.0.0",
         info: {
             title: 'Recetaccs API',
             description: 'API Docs',
@@ -11,13 +10,13 @@ const swaggerOptions = {
             version: "1.0.0"
         },
         securityDefinitions: {
-            apiKeyAuth: {
+            bearerAuth: {
                 type: 'apiKey',
-                name: 'X-Api-Key',
+                name: 'Authorization',
                 scheme: 'bearer',
                 in: 'header',
             },
-        },
+        }
     },
     apis: [`${path.join(__dirname, "./routes/*-routes.js")}`],
 }
