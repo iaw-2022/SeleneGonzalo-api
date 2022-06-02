@@ -40,10 +40,8 @@ const userController = require ('../controllers/users-controller');
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
- *         content:
- *           application/json:
- *             schema:
- *                 $ref: '#definitions/Usuarios' 
+ *         schema:
+ *           $ref: '#definitions/Usuarios' 
  *       '400':
  *         description: Parámetro inválido.
  *       '404':
