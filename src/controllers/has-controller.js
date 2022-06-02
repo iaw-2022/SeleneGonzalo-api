@@ -5,7 +5,7 @@ const updateHas = async (req, res) => {
     const check_ingredient = await database.query('SELECT * FROM ingredients WHERE id = $1',[id_ingredient]);
     const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $1',[id_recipe]) 
     if ((check_recipe.rowCount > 0) && (check_ingredient.rowCount > 0)){
-        await database.query('UPDATE has SET id_ingredient = $2, lot = $1 WHERE id_recipe = $3',[lot,id_ingredient, id_recipe],function(err, result, fields) {
+        await database.query('UPDATE has SET lot = $1 WHERE id_recipe = $3 and id_ingredient = $2',[lot,id_ingredient, id_recipe],function(err, result, fields) {
             if (err) {
                 res.status(400).json({error: 'Algo salió mal'});
             }else{
