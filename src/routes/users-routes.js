@@ -34,7 +34,7 @@ const userController = require ('../controllers/users-controller');
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID del usuario
  *     responses:

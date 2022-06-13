@@ -47,9 +47,9 @@ const auth = require('../auth');
  *             lot:
  *               type: string
  *             id_ingredient:
- *               type: integer
+ *               type: string
  *             id_recipe:
- *               type: integer
+ *               type: string
  *     responses:
  *       '200':
  *         description: Ingredientes agregados satisfactoriamente.
@@ -83,9 +83,9 @@ router.post('/ingredients/recipe',auth, hasController.assignHas);
  *             lot:
  *               type: string
  *             id_ingredient:
- *               type: integer
+ *               type: string
  *             id_recipe:
- *               type: integer
+ *               type: string
  *     responses:
  *       '200':
  *         description: Ingredientes modificados satisfactoriamente.
@@ -107,7 +107,7 @@ router.put('/ingredients/recipe',auth, hasController.updateHas);
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID de la receta
  *     responses:

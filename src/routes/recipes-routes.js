@@ -39,7 +39,7 @@ const auth = require('../auth');
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID de la receta
  *     responses:
@@ -65,7 +65,7 @@ router.get('/recipes/:id', recipeController.getRecipeById);
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID del usuario
  *     responses:
@@ -121,7 +121,7 @@ router.get('/recipes', recipeController.getRecipes);
  *             - description
  *           properties:
  *             id_user:
- *               type: integer
+ *               type: string
  *             name:
  *               type: string
  *             image:
@@ -149,7 +149,7 @@ router.post('/recipes',auth, recipeController.createRecipe);
  *       - in: path
  *         name: id
  *         schema:
- *             type: integer
+ *             type: string
  *         required: true
  *         description: ID de la receta a eliminar.
  *     responses:
@@ -184,7 +184,7 @@ router.delete('/recipes/:id',auth, recipeController.deleteRecipe);
  *             - description
  *           properties:
  *             id_recipe:
- *               type: integer
+ *               type: string
  *             name:
  *               type: string
  *             image:

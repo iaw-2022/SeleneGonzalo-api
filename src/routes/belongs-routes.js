@@ -65,7 +65,7 @@ router.post('/categories/recipe',auth, belongsController.assignBelongs);
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID de la receta
  *     responses:

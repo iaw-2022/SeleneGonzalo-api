@@ -31,7 +31,7 @@ const auth = require('../auth');
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID de la categoría
  *     responses:
@@ -78,7 +78,7 @@ router.get('/categories', categoryController.getCategories);
  *       - in: path
  *         name: id
  *         schema:
- *             type: integer
+ *             type: string
  *         required: true
  *         description: ID de la categoría a eliminar.
  *     responses:
@@ -111,7 +111,7 @@ router.get('/categories', categoryController.getCategories);
  *             - name
  *           properties:
  *             id_category:
- *               type: integer
+ *               type: string
  *             name:
  *               type: string
  *     responses:

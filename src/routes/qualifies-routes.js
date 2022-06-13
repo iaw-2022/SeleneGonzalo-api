@@ -43,7 +43,7 @@ const auth = require('../auth');
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID de la calificación
  *     responses:
@@ -82,9 +82,9 @@ router.get('/qualifies/:id', qualifiesController.getQualificationById);
  *             - qualification
  *           properties:
  *             id_user:
- *               type: integer
+ *               type: string
  *             id_recipe:
- *               type: integer
+ *               type: string
  *             commentary:
  *               type: string
  *             qualification:   
@@ -118,11 +118,11 @@ router.post('/qualifies',auth, qualifiesController.createQualification);
  *             - id_recipe
  *           properties:
  *             id:
- *               type: integer
+ *               type: string
  *             id_user:
- *               type: integer
+ *               type: string
  *             id_recipe:
- *               type: integer
+ *               type: string
  *     responses:
  *       '200':
  *         description: Calificación removida satisfactoriamente. 
