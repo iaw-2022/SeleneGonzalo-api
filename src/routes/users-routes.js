@@ -9,7 +9,7 @@ const userController = require ('../controllers/users-controller');
  *     type: object
  *     properties:
  *       id:
- *         type: integer
+ *         type: string
  *         description: "El id del usuario"
  *       name:
  *         type: string

@@ -3,12 +3,6 @@ const router = Router();
 const recipeController = require ('../controllers/recipes-controller');
 const auth = require('../auth');
 
-//AUTH
-router.get('/authorized',auth, function (req, res) {
-    res.send('Secured Resource');
-});
-
-
 /**
  * @swagger
  * definitions:
@@ -16,7 +10,7 @@ router.get('/authorized',auth, function (req, res) {
  *     type: object
  *     properties:
  *       id:
- *         type: integer
+ *         type: string
  *         description: "El id de la receta generado automáticamente"
  *       name:
  *         type: string

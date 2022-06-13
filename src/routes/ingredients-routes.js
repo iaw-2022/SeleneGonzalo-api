@@ -15,7 +15,7 @@ router.get('/authorized',auth, function (req, res) {
  *     type: object
  *     properties:
  *       id:
- *         type: integer
+ *         type: string
  *         description: "El id del ingrediente generado automáticamente"
  *       name:
  *         type: string

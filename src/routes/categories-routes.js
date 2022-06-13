@@ -3,11 +3,6 @@ const router = Router();
 const categoryController = require ('../controllers/categories-controller');
 const auth = require('../auth');
 
-//AUTH
-router.get('/authorized',auth, function (req, res) {
-    res.send('Secured Resource');
-});
-
 /**
  * @swagger
  * definitions:
@@ -15,7 +10,7 @@ router.get('/authorized',auth, function (req, res) {
  *     type: object
  *     properties:
  *       id:
- *         type: integer
+ *         type: string
  *         description: "El id de categoría generado automáticamente"
  *       name:
  *         type: string

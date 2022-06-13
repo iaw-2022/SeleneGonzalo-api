@@ -15,13 +15,13 @@ router.get('/authorized',auth, function (req, res) {
  *     type: object
  *     properties:
  *       id:
- *         type: integer
+ *         type: string
  *         description: "El id de la calificación"
  *       id_user:
- *         type: integer
+ *         type: string
  *         description: "El id del usuario que realizó la calificación"
  *       id_recipe:
- *         type: integer
+ *         type: string
  *         description: "El id de la receta que calificó el usuario"
  *       commentary:
  *         type: string

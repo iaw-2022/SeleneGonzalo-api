@@ -3,11 +3,6 @@ const router = Router();
 const belongsController = require ('../controllers/belongs-controller');
 const auth = require('../auth');
 
-//AUTH
-router.get('/authorized',auth, function (req, res) {
-    res.send('Secured Resource');
-});
-
 /**
  * @swagger
  * definitions:
@@ -15,7 +10,7 @@ router.get('/authorized',auth, function (req, res) {
  *     type: object
  *     properties:
  *       id_categoria:
- *         type: integer
+ *         type: string
  *         description: "El id de la categoría de la receta"
  *       name:
  *         type: string

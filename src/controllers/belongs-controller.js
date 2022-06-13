@@ -36,7 +36,6 @@ const getBelongs = async (req, res) => {
 }
 
 module.exports = {
-    updateBelongs,
     assignBelongs,
     getBelongs
 }
