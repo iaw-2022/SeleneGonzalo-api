@@ -3,11 +3,6 @@ const router = Router();
 const qualifiesController = require ('../controllers/qualifies-controller');
 const auth = require('../auth');
 
-//AUTH
-router.get('/authorized',auth, function (req, res) {
-    res.send('Secured Resource');
-});
-
 /**
  * @swagger
  * definitions:

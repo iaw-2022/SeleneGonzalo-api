@@ -40,9 +40,9 @@ const auth = require('../auth');
  *             - id_category
  *           properties:
  *             id_recipe:
- *               type: integer
+ *               type: string
  *             id_category:
- *               type: integer
+ *               type: string
  *     responses:
  *       '200':
  *         description: Asignacion exitosa.

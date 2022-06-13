@@ -3,11 +3,6 @@ const router = Router();
 const ingredientController = require ('../controllers/ingredients-controller');
 const auth = require('../auth');
 
-//AUTH
-router.get('/authorized',auth, function (req, res) {
-    res.send('Secured Resource');
-});
-
 /**
  * @swagger
  * definitions:
@@ -36,7 +31,7 @@ router.get('/authorized',auth, function (req, res) {
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID del ingrediente
  *     responses:
@@ -83,7 +78,7 @@ router.get('/ingredients', ingredientController.getIngredients);
  *       - in: path
  *         name: id
  *         schema:
- *             type: integer
+ *             type: string
  *         required: true
  *         description: ID del ingrediente a eliminar.
  *     responses:
@@ -116,7 +111,7 @@ router.get('/ingredients', ingredientController.getIngredients);
  *             - name
  *           properties:
  *             id_ingredient:
- *               type: integer
+ *               type: string
  *             name:
  *               type: string
  *     responses:
