@@ -5,6 +5,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger');
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const app = express();
+const cors = require('cors');
+
+//CORS
+app.use(cors());
 
 //MIDDLEWARES
 app.use(express.json());
