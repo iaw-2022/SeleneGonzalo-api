@@ -41,11 +41,11 @@ const auth = require('../auth');
  *       - Calificaciones
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: id_recipe
  *         schema:
  *           type: string
  *         required: true
- *         description: ID de la calificación
+ *         description: ID de la receta de la calificación
  *     responses:
  *       '200':
  *         description: Exito en la consulta.
