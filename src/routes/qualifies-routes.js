@@ -34,7 +34,7 @@ const auth = require('../auth');
 
 /**
  * @swagger
- * /qualifies/{id}:
+ * /qualifies/{id_recipe}:
  *   get:
  *     description: Usar para obtener una calificación.
  *     tags: 
@@ -58,7 +58,7 @@ const auth = require('../auth');
  *       '404':
  *         description: Calificacion no encontrada.
  */
-router.get('/qualifies/:id', qualifiesController.getQualificationById);
+router.get('/qualifies/:id_recipe', qualifiesController.getQualificationById);
 
 /**
  * @swagger

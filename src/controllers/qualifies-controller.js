@@ -1,8 +1,8 @@
 const database = require('../database');
 
 const getQualificationById = async (req, res) => {
-    if(!isNaN(req.params.id)){
-        const response = await database.query('SELECT id, id_user, id_recipe, commentary, qualification FROM qualifies WHERE id_recipe = $1',[req.params.id]);
+    if(!isNaN(req.params.id_recipe)){
+        const response = await database.query('SELECT id, id_user, id_recipe, commentary, qualification FROM qualifies WHERE qualifies.id_recipe = $1',[req.params.id_recipe]);
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
         }else{
