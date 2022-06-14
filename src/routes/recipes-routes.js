@@ -12,6 +12,9 @@ const auth = require('../auth');
  *       id:
  *         type: string
  *         description: "El id de la receta generado automáticamente"
+ *       id_user:
+ *         type: string
+ *         description: "El id del usuario que cargó la receta"
  *       name:
  *         type: string
  *         description: "Nombre de la receta"
@@ -23,6 +26,7 @@ const auth = require('../auth');
  *         description: "Descripcion de la categoría"
  *     example:
  *       id: "2"
+ *       id_user: "2"
  *       name: "Pan"
  *       image: "pan.jpg"
  *       description: "descripción de los pasos para hacer pan"
