@@ -36,7 +36,7 @@ const getRecipeByUser = async (req, res) => {
 };
 
 const createRecipe = async(req, res) => {
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {id_user, name, image, description} = req.body
     await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
         if (err) {

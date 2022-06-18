@@ -1,7 +1,7 @@
 const database = require('../database');
 
 const assignBelongs = async (req, res) =>{
-    let actualDate = new Date(Date.now()).toLocaleString('es-AR');
+    let actualDate = new Date(Date.now()).toLocaleString('en-US');
     const {id_recipe, id_category} = req.body
     const check_recipe = await database.query('SELECT * FROM recipes WHERE id = $1',[id_recipe])
     const check_category = await database.query('SELECT * FROM categories WHERE id = $1',[id_category])
