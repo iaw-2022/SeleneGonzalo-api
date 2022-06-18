@@ -41,4 +41,4 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //PORT
 app.listen(process.env.PORT);
-console.log('Server on port 3000');
+console.log('Server on port '+process.env.PORT);
