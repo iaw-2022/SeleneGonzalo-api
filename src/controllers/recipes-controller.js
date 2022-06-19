@@ -38,10 +38,8 @@ const getRecipeByUser = async (req, res) => {
 
 const createRecipe = async(req, res) => {
     const info = await getUserInfo(req);
-    console.log(info);
     let actualDate = new Date(Date.now()).toLocaleString('en-US');
-    const email = info.email;
-    let id_user = await database.query ('SELECT id')
+    const id_user = findId(info);
     const {name, image, description} = req.body
     await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
         if (err) {
@@ -51,6 +49,14 @@ const createRecipe = async(req, res) => {
             res.status(200).json({message: "Receta cargada exitosamente"});
         }
     });
+}
+
+async function findId (info){
+    const id_user = await database.query ('SELECT id from users WHERE users.email = $1', [info.email])
+    if (id_user == null){
+        id_user = await database.query('INSERT INTO users VALUES ($1,$2,$3) returning id', [info.name, info.email, 2])
+    }
+    return id_user
 }
 
 const deleteRecipe = async(req, res) => {
