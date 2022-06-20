@@ -39,23 +39,29 @@ const getRecipeByUser = async (req, res) => {
 const createRecipe = async(req, res) => {
     const info = await getUserInfo(req);
     let actualDate = new Date(Date.now()).toLocaleString('en-US');
-    const id_user = findId(info);
-    const {name, image, description} = req.body
-    await database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
-        if (err) {
-            res.status(400).json({error: err.message});
-        }else{
-            await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
-            res.status(200).json({message: "Receta cargada exitosamente"});
+    await findId(info,actualDate).then(
+        (id_user) => {
+            const {name, image, description} = req.body
+            database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
+                if (err) {
+                    res.status(400).json({error: "No se pudo cargar la receta"});
+                }else{
+                    console.log(id_user)
+                    await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
+                    res.status(200).json({message: "Receta cargada exitosamente"});
+                }
+            });
         }
-    });
+    );
 }
 
-async function findId (info){
-    const id_user = await database.query ('SELECT id from users WHERE users.email = $1', [info.email])
-    if (id_user == null){
-        id_user = await database.query('INSERT INTO users VALUES ($1,$2,$3) returning id', [info.name, info.email, 2])
-    }
+async function findId (info,actualDate){
+    let id_user = await database.query ('SELECT id from users WHERE users.email = $1', [info.email]).
+    then((id_user) => {
+        if (id_user.rowCount <= 0){
+            return database.query('INSERT INTO users (name, email, image, id_rol, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6) returning id', [info.name, info.email, info.picture, 2, actualDate, actualDate]).then((user) => user.rows[0].id)
+        }else return id_user.rows[0].id
+    })
     return id_user
 }
 

@@ -1,7 +1,7 @@
 const database = require('../database');
 
 const getUsers = async (req, res) => {
-    const response = await database.query('SELECT id, name, email FROM users');
+    const response = await database.query('SELECT id, name, email, image FROM users');
     
     if(response.rows.length > 0){
         res.status(200).json(response.rows);
@@ -12,7 +12,7 @@ const getUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
     if(!isNaN(req.params.id)){
-        const response = await database.query('SELECT id, name, email FROM users WHERE id = $1',[req.params.id]);
+        const response = await database.query('SELECT id, name, email, image FROM users WHERE id = $1',[req.params.id]);
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
         }else{
