@@ -119,13 +119,10 @@ router.get('/recipes', recipeController.getRecipes);
  *         schema:
  *           type: object
  *           required: 
- *             - id_user
  *             - name
  *             - image
  *             - description
  *           properties:
- *             id_user:
- *               type: string
  *             name:
  *               type: string
  *             image:
