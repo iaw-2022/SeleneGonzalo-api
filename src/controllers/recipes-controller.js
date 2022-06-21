@@ -46,9 +46,8 @@ const createRecipe = async(req, res) => {
                 if (err) {
                     res.status(400).json({error: "No se pudo cargar la receta"});
                 }else{
-                    console.log(id_user)
                     await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
-                    res.status(200).json({message: "Receta cargada exitosamente"});
+                    res.status(200).json({message: "Receta cargada exitosamente", id: result.rows[0].id});
                 }
             });
         }
