@@ -81,8 +81,6 @@ router.get('/qualifies/:id_recipe', qualifiesController.getQualificationById);
  *             - commentary
  *             - qualification
  *           properties:
- *             id_user:
- *               type: string
  *             id_recipe:
  *               type: string
  *             commentary:
