@@ -37,21 +37,25 @@ const getRecipeByUser = async (req, res) => {
 };
 
 const createRecipe = async(req, res) => {
-    const info = await getUserInfo(req);
-    let actualDate = new Date(Date.now()).toLocaleString('en-US');
-    await findId(info,actualDate).then(
-        (id_user) => {
-            const {name, image, description} = req.body
-            database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
-                if (err) {
-                    res.status(400).json({error: "No se pudo cargar la receta"});
-                }else{
-                    await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
-                    res.status(200).json({message: "Receta cargada exitosamente", id: result.rows[0].id});
-                }
-            });
-        }
-    );
+    try{
+        const info = await getUserInfo(req);
+        let actualDate = new Date(Date.now()).toLocaleString('en-US');
+        await findId(info,actualDate).then(
+            (id_user) => {
+                const {name, image, description} = req.body
+                database.query('INSERT INTO recipes (name, image, description, created_at, updated_at) VALUES ($1,$2,$3,$4,$5) returning id', [name, image, description, actualDate, actualDate], async function(err, result, fields) {
+                    if (err) {
+                        res.status(400).json({error: "No se pudo cargar la receta"});
+                    }else{
+                        await database.query('INSERT INTO upload VALUES ($1,$2,$3,$4)',[result.rows[0].id, id_user, actualDate,actualDate])
+                        res.status(200).json({message: "Receta cargada exitosamente", id: result.rows[0].id});
+                    }
+                });
+            }
+        );
+    }catch(Error){
+        res.status(400).json({error: "No se pudo cargar la receta"});
+    }
 }
 
 async function findId (info,actualDate){
