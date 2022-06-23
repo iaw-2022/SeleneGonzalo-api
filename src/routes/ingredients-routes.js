@@ -124,4 +124,6 @@ router.get('/ingredients', ingredientController.getIngredients);
  */
  router.put('/ingredients',auth, ingredientController.updateIngredient);
 
+router.post('/ingredients', ingredientController.createIngredient)
+
 module.exports = router;
